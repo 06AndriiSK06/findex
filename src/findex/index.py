@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import pickle
 import shutil
 import time
 import tracemalloc
 from array import array
 from collections import Counter, defaultdict
+from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
 from findex.corpus import iter_documents
+from findex.timing import timed
 from findex.tokenize import tokenize
 
 
@@ -35,20 +38,79 @@ class DocMeta:
     title: str
 
 
-@dataclass(slots=True)
-class InvertedIndex:
-    postings: dict[str, list[Posting]]
-    doc_lengths: dict[int, int]
-    doc_meta: dict[int, DocMeta]
-    with_positions: bool = False
+class Index(Mapping[str, list[Posting]]):
+    def __init__(
+        self,
+        postings: dict[str, list[Posting]],
+        doc_lengths: dict[int, int],
+        doc_meta: dict[int, DocMeta],
+        *,
+        with_positions: bool = False,
+    ) -> None:
+        self._postings = postings
+        self._doc_lengths = doc_lengths
+        self._doc_meta = doc_meta
+        self.with_positions = with_positions
+        self.closed = False
+
+    @property
+    def postings(self) -> dict[str, list[Posting]]:
+        return self._postings
+
+    @property
+    def doc_lengths(self) -> dict[int, int]:
+        return self._doc_lengths
+
+    @property
+    def doc_meta(self) -> dict[int, DocMeta]:
+        return self._doc_meta
+
+    @property
+    def num_docs(self) -> int:
+        return len(self._doc_lengths)
+
+    @functools.cached_property
+    def avg_doc_length(self) -> float:
+        if not self._doc_lengths:
+            return 0.0
+        return sum(self._doc_lengths.values()) / self.num_docs
+
+    def doc_length(self, doc_id: int) -> int:
+        return self._doc_lengths[doc_id]
+
+    def df(self, term: str) -> int:
+        plist = self._postings.get(term)
+        return len(plist) if plist is not None else 0
+
+    def close(self) -> None:
+        self.closed = True
+
+    def __len__(self) -> int:
+        return len(self._postings)
+
+    def __contains__(self, term: object) -> bool:
+        return term in self._postings
+
+    def __getitem__(self, term: str) -> list[Posting]:
+        return self._postings[term]
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self._postings)
+
+    def __repr__(self) -> str:
+        return f"Index(terms={len(self):_}, docs={self.num_docs:_})"
 
 
+InvertedIndex = Index
+
+
+@timed
 def build_index(
     root: Path,
     *,
     limit: int | None = None,
     with_positions: bool = False,
-) -> InvertedIndex:
+) -> Index:
     postings_map: dict[str, list[Posting]] = defaultdict(list)
     doc_lengths: dict[int, int] = {}
     doc_meta: dict[int, DocMeta] = {}
@@ -81,7 +143,7 @@ def build_index(
             for term, tf in counts.items():
                 postings_map[term].append(Posting(doc_id=doc_id, tf=tf))
 
-    return InvertedIndex(
+    return Index(
         postings=dict(postings_map),
         doc_lengths=doc_lengths,
         doc_meta=doc_meta,
@@ -245,8 +307,7 @@ def main() -> None:
     size_mib = args.out.stat().st_size / (1024 * 1024)
     total_postings = sum(len(plist) for plist in index.postings.values())
 
-    print(f"Indexed documents: {len(index.doc_meta)}")
-    print(f"Vocabulary size:   {len(index.postings)}")
+    print(f"Built {index!r}")
     print(f"Total postings:    {total_postings}")
     print(f"Positions stored:  {index.with_positions}")
     print(f"Build time:        {build_elapsed:.3f} s")

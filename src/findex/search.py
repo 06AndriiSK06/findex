@@ -1,286 +1,224 @@
 from __future__ import annotations
 
 import argparse
+import functools
+import heapq
+import logging
 import time
 import tracemalloc
+from operator import itemgetter
 from pathlib import Path
 
-from findex.index import InvertedIndex
-from findex.store import load_index
-from findex.tokenize import tokenize
+from findex.index import Index, Posting
+from findex.query import parse_query
+from findex.ranking import BM25, Scorer, SearchResult, TfIdf, extract_snippet
+from findex.store import open_index
+from findex.timing import timed
+
+logger = logging.getLogger("findex.search")
+
+_INDEX_REGISTRY: dict[int, Index] = {}
 
 
-def intersect_merge(a: list[int], b: list[int]) -> list[int]:
-    result: list[int] = []
-    i = 0
-    j = 0
-    len_a = len(a)
-    len_b = len(b)
-    while i < len_a and j < len_b:
-        if a[i] == b[j]:
-            result.append(a[i])
-            i += 1
-            j += 1
-        elif a[i] < b[j]:
-            i += 1
-        else:
-            j += 1
-    return result
+@functools.lru_cache(maxsize=256)
+def _cached_match_ids(
+    index_id: int,
+    num_docs: int,
+    num_terms: int,
+    raw_query: str,
+) -> tuple[int, ...]:
+    logger.info("[cache MISS] parsing and evaluating query=%r", raw_query)
+    index = _INDEX_REGISTRY[index_id]
+    tree = parse_query(raw_query)
+    matched = tree.evaluate(index)
+    return tuple(sorted(matched))
 
 
-def union_merge(a: list[int], b: list[int]) -> list[int]:
-    result: list[int] = []
-    i = 0
-    j = 0
-    len_a = len(a)
-    len_b = len(b)
-    while i < len_a and j < len_b:
-        if a[i] == b[j]:
-            result.append(a[i])
-            i += 1
-            j += 1
-        elif a[i] < b[j]:
-            result.append(a[i])
-            i += 1
-        else:
-            result.append(b[j])
-            j += 1
-    if i < len_a:
-        result.extend(a[i:])
-    if j < len_b:
-        result.extend(b[j:])
-    return result
+def get_matched_doc_ids(index: Index, raw_query: str) -> tuple[int, ...]:
+    idx_id = id(index)
+    _INDEX_REGISTRY[idx_id] = index
+    before = _cached_match_ids.cache_info().hits
+    res = _cached_match_ids(idx_id, index.num_docs, len(index), raw_query)
+    after = _cached_match_ids.cache_info().hits
+    if after > before:
+        logger.info("[cache HIT] query=%r", raw_query)
+    return res
 
 
-def difference_merge(a: list[int], b: list[int]) -> list[int]:
-    result: list[int] = []
-    i = 0
-    j = 0
-    len_a = len(a)
-    len_b = len(b)
-    while i < len_a and j < len_b:
-        if a[i] == b[j]:
-            i += 1
-            j += 1
-        elif a[i] < b[j]:
-            result.append(a[i])
-            i += 1
-        else:
-            j += 1
-    if i < len_a:
-        result.extend(a[i:])
-    return result
-
-
-def _term_doc_ids(index: InvertedIndex, raw_term: str) -> list[int]:
-    tokens = list(tokenize(raw_term))
-    if not tokens:
-        return []
-    plist = index.postings.get(tokens[0], [])
-    return [p.doc_id for p in plist]
-
-
+@timed
 def search(
-    index: InvertedIndex,
+    index: Index,
     query: str,
     *,
-    engine: str = "merge",
-) -> list[int]:
-    raw_parts = query.strip().split()
-    if not raw_parts:
+    scorer: Scorer | None = None,
+    k: int = 10,
+    with_snippets: bool = True,
+) -> list[SearchResult]:
+    active_scorer: Scorer = scorer if scorer is not None else BM25()
+    matched_ids = set(get_matched_doc_ids(index, query))
+    if not matched_ids:
         return []
 
-    all_docs = sorted(index.doc_meta.keys())
-    tokens: list[str] = []
-    for part in raw_parts:
-        upper = part.upper()
-        if upper in {"AND", "OR", "NOT"}:
-            tokens.append(upper)
-        else:
-            norm = list(tokenize(part))
-            if norm:
-                tokens.append(norm[0])
+    tree = parse_query(query)
+    positive_terms = list(dict.fromkeys(tree.terms()))
+    scores: dict[int, float] = {doc_id: 0.0 for doc_id in matched_ids}
 
-    if not tokens:
-        return []
+    for term in positive_terms:
+        plist = index.postings.get(term, [])
+        for posting in plist:
+            if posting.doc_id in scores:
+                scores[posting.doc_id] += active_scorer.score(term, posting, index)
 
-    if engine == "set":
-        return _search_set(index, tokens, all_docs)
-    return _search_merge(index, tokens, all_docs)
-
-
-def _search_merge(
-    index: InvertedIndex,
-    tokens: list[str],
-    all_docs: list[int],
-) -> list[int]:
-    idx = 0
-    negate_first = False
-    if tokens[idx] == "NOT":
-        negate_first = True
-        idx += 1
-    if idx >= len(tokens):
-        return []
-
-    current = _term_doc_ids(index, tokens[idx])
-    if negate_first:
-        current = difference_merge(all_docs, current)
-    idx += 1
-
-    while idx < len(tokens):
-        op = "AND"
-        if tokens[idx] in {"AND", "OR"}:
-            op = tokens[idx]
-            idx += 1
-        if idx >= len(tokens):
-            break
-
-        negate = False
-        if tokens[idx] == "NOT":
-            negate = True
-            idx += 1
-        if idx >= len(tokens):
-            break
-
-        rhs = _term_doc_ids(index, tokens[idx])
-        if negate:
-            rhs = difference_merge(all_docs, rhs)
-
-        if op == "OR":
-            current = union_merge(current, rhs)
-        else:
-            current = intersect_merge(current, rhs)
-        idx += 1
-
-    return current
+    top_pairs = heapq.nlargest(k, scores.items(), key=itemgetter(1))
+    results: list[SearchResult] = []
+    for doc_id, score in top_pairs:
+        meta = index.doc_meta[doc_id]
+        snippet = (
+            extract_snippet(meta.path, positive_terms)
+            if with_snippets
+            else ""
+        )
+        results.append(
+            SearchResult(
+                score=score,
+                doc_id=doc_id,
+                title=meta.title,
+                snippet=snippet,
+            )
+        )
+    return results
 
 
-def _search_set(
-    index: InvertedIndex,
-    tokens: list[str],
-    all_docs: list[int],
-) -> list[int]:
-    all_set = set(all_docs)
-    idx = 0
-    negate_first = False
-    if tokens[idx] == "NOT":
-        negate_first = True
-        idx += 1
-    if idx >= len(tokens):
-        return []
+def run_ranking_evaluation(index: Index) -> None:
+    bm25 = BM25()
+    tfidf = TfIdf()
 
-    current = set(_term_doc_ids(index, tokens[idx]))
-    if negate_first:
-        current = all_set - current
-    idx += 1
+    print("\n=== 1. Three Ranking Sanity Checks (BM25) ===")
 
-    while idx < len(tokens):
-        op = "AND"
-        if tokens[idx] in {"AND", "OR"}:
-            op = tokens[idx]
-            idx += 1
-        if idx >= len(tokens):
-            break
-
-        negate = False
-        if tokens[idx] == "NOT":
-            negate = True
-            idx += 1
-        if idx >= len(tokens):
-            break
-
-        rhs = set(_term_doc_ids(index, tokens[idx]))
-        if negate:
-            rhs = all_set - rhs
-
-        if op == "OR":
-            current = current | rhs
-        else:
-            current = current & rhs
-        idx += 1
-
-    return sorted(current)
-
-
-def run_engine_benchmark(index: InvertedIndex, iterations: int = 2000) -> None:
+    # Check 1: Rare term outranks common term
     sorted_terms = sorted(index.postings.items(), key=lambda kv: len(kv[1]))
-    rarest = [sorted_terms[0][0], sorted_terms[1][0]]
-    most_common = [sorted_terms[-1][0], sorted_terms[-2][0]]
+    rare_term = next(t for t, pl in sorted_terms if len(pl) == 2 and t.isalpha() and len(t) > 4)
+    common_term = "the"
+    res_check1 = search(index, f"{rare_term} OR {common_term}", scorer=bm25, k=3, with_snippets=False)
+    print(f"\n[Check 1] Rare term '{rare_term}' (df=2) vs common '{common_term}' (df={index.df(common_term)}):")
+    for r in res_check1:
+        has_rare = any(p.doc_id == r.doc_id for p in index[rare_term])
+        print(f"  doc_id={r.doc_id} | score={r.score:.4f} | has_rare={has_rare} | {r.title}")
 
-    cases = [
-        ("2 most common (AND)", f"{most_common[0]} {most_common[1]}"),
-        ("2 most common (OR)", f"{most_common[0]} OR {most_common[1]}"),
-        ("2 rarest (AND)", f"{rarest[0]} {rarest[1]}"),
-        ("2 rarest (OR)", f"{rarest[0]} OR {rarest[1]}"),
+    # Check 2: Saturation (20th repetition adds almost nothing)
+    sat_term = "generator"
+    p_tf1 = next(p for p in index[sat_term] if p.tf == 1)
+
+    s1 = bm25.score(sat_term, Posting(doc_id=p_tf1.doc_id, tf=1), index)
+    s19 = bm25.score(sat_term, Posting(doc_id=p_tf1.doc_id, tf=19), index)
+    s20 = bm25.score(sat_term, Posting(doc_id=p_tf1.doc_id, tf=20), index)
+    print(f"\n[Check 2] BM25 saturation on '{sat_term}' (doc_id={p_tf1.doc_id}):")
+    print(f"  tf=1:  {s1:.4f}")
+    print(f"  tf=19: {s19:.4f}")
+    print(f"  tf=20: {s20:.4f} (marginal gain of 20th rep: +{s20 - s19:.6f})")
+
+    # Check 3: Short doc with 1 match outranks very long doc with 1 match
+    single_hits = [p for p in index["asyncio"] if p.tf == 1]
+    shortest = min(single_hits, key=lambda p: index.doc_length(p.doc_id))
+    longest = max(single_hits, key=lambda p: index.doc_length(p.doc_id))
+    s_short = bm25.score("asyncio", shortest, index)
+    s_long = bm25.score("asyncio", longest, index)
+    print("\n[Check 3] Length normalization on 'asyncio' (both tf=1):")
+    print(f"  Short doc [{shortest.doc_id}] (len={index.doc_length(shortest.doc_id)}): score={s_short:.4f}")
+    print(f"  Long  doc [{longest.doc_id}] (len={index.doc_length(longest.doc_id)}): score={s_long:.4f}")
+
+    # Precision@5 evaluation on 10 queries with title-keyword relevance ground truth
+    eval_queries = [
+        ("asyncio", ["asyncio"]),
+        ("sqlite3", ["sqlite3"]),
+        ("itertools", ["itertools"]),
+        ("pathlib", ["pathlib"]),
+        ("subprocess", ["subprocess"]),
+        ("collections", ["collections"]),
+        ("threading", ["threading"]),
+        ("unittest", ["unittest"]),
+        ("json", ["json"]),
+        ("argparse", ["argparse"]),
     ]
 
-    print(f"\nMost common terms: {most_common[0]} ({len(index.postings[most_common[0]])} docs), "
-          f"{most_common[1]} ({len(index.postings[most_common[1]])} docs)")
-    print(f"Rarest terms:      {rarest[0]} ({len(index.postings[rarest[0]])} docs), "
-          f"{rarest[1]} ({len(index.postings[rarest[1]])} docs)")
+    print("\n=== 2. Precision@5 Evaluation (10 Queries: TF-IDF vs BM25) ===")
+    print("| Query | TF-IDF P@5 | BM25 P@5 | Top-1 BM25 Document |")
+    print("| :--- | ---: | ---: | :--- |")
 
-    print(f"\n--- Boolean Engine Benchmark ({iterations} iterations) ---")
-    print("| Query type | Terms | merge | set |")
-    print("| :--- | :--- | ---: | ---: |")
+    tfidf_scores: list[float] = []
+    bm25_scores: list[float] = []
 
-    for label, query in cases:
-        t0 = time.perf_counter()
-        for _ in range(iterations):
-            res_merge = search(index, query, engine="merge")
-        t_merge = (time.perf_counter() - t0) * 1000
+    for q, rel_keywords in eval_queries:
+        r_tfidf = search(index, q, scorer=tfidf, k=5, with_snippets=False)
+        r_bm25 = search(index, q, scorer=bm25, k=5, with_snippets=False)
 
-        t0 = time.perf_counter()
-        for _ in range(iterations):
-            res_set = search(index, query, engine="set")
-        t_set = (time.perf_counter() - t0) * 1000
+        p5_tfidf = sum(
+            1 for r in r_tfidf if any(kw in r.title.casefold() for kw in rel_keywords)
+        ) / 5.0
+        p5_bm25 = sum(
+            1 for r in r_bm25 if any(kw in r.title.casefold() for kw in rel_keywords)
+        ) / 5.0
 
-        assert res_merge == res_set
-        print(f"| {label} | `{query}` | {t_merge:.2f} ms | {t_set:.2f} ms |")
+        tfidf_scores.append(p5_tfidf)
+        bm25_scores.append(p5_bm25)
+        top1_title = r_bm25[0].title if r_bm25 else "-"
+        print(f"| `{q}` | {p5_tfidf:.2f} | {p5_bm25:.2f} | {top1_title} |")
+
+    mean_tfidf = sum(tfidf_scores) / len(tfidf_scores)
+    mean_bm25 = sum(bm25_scores) / len(bm25_scores)
+    print(f"| **Mean P@5** | **{mean_tfidf:.2f}** | **{mean_bm25:.2f}** | — |")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Search persisted inverted index.")
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+
+    parser = argparse.ArgumentParser(description="Ranked search over inverted index.")
     parser.add_argument("index_path", type=Path, help="Path to saved index file")
-    parser.add_argument("query", nargs="?", default="", help="Boolean search query")
+    parser.add_argument("query", nargs="?", default="", help="Search query")
     parser.add_argument(
-        "--engine",
-        choices=("merge", "set"),
-        default="merge",
-        help="Boolean intersection/union engine",
+        "--scorer",
+        choices=("bm25", "tfidf"),
+        default="bm25",
+        help="Ranking algorithm (default: bm25)",
     )
-    parser.add_argument("--top", type=int, default=10, help="Max results to display")
+    parser.add_argument("--top", type=int, default=5, help="Top-k results to display")
     parser.add_argument(
-        "--benchmark",
+        "--repeat",
         action="store_true",
-        help="Benchmark merge vs set on most common and rarest terms",
+        help="Run the query twice to demonstrate lru_cache hit",
+    )
+    parser.add_argument(
+        "--eval",
+        action="store_true",
+        help="Run sanity checks and 10-query Precision@5 evaluation",
     )
     args = parser.parse_args()
 
     tracemalloc.start()
-    t_load0 = time.perf_counter()
-    index = load_index(args.index_path)
-    load_elapsed = time.perf_counter() - t_load0
+    with open_index(args.index_path) as index:
+        if args.eval:
+            run_ranking_evaluation(index)
+            tracemalloc.stop()
+            return
 
-    if args.benchmark:
-        run_engine_benchmark(index)
+        scorer: Scorer = BM25() if args.scorer == "bm25" else TfIdf()
+        t0 = time.perf_counter()
+        results = search(index, args.query, scorer=scorer, k=args.top)
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
+
+        if args.repeat:
+            _ = search(index, args.query, scorer=scorer, k=args.top)
+
+        _, peak_bytes = tracemalloc.get_traced_memory()
         tracemalloc.stop()
-        return
 
-    t_search0 = time.perf_counter()
-    doc_ids = search(index, args.query, engine=args.engine)
-    search_elapsed = time.perf_counter() - t_search0
-    _, peak_bytes = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
+        print(f"\nIndex:   {index!r}")
+        print(f"Query:   {args.query!r} (scorer={args.scorer})")
+        print(f"Results: {len(results)} (top-{args.top}) in {elapsed_ms:.2f} ms")
+        print(f"Peak memory: {peak_bytes / (1024 * 1024):.2f} MiB\n")
 
-    print(f"Query:         {args.query!r} (engine={args.engine})")
-    print(f"Matches:       {len(doc_ids)}")
-    print(f"Load time:     {load_elapsed:.4f} s")
-    print(f"Search time:   {search_elapsed * 1000:.3f} ms")
-    print(f"Peak memory:   {peak_bytes / (1024 * 1024):.2f} MiB\n")
-
-    for rank, doc_id in enumerate(doc_ids[: args.top], start=1):
-        meta = index.doc_meta[doc_id]
-        print(f"{rank}. [{doc_id}] {meta.title} ({meta.path})")
+        for rank, res in enumerate(results, start=1):
+            print(f"{rank}. {res}")
 
 
 if __name__ == "__main__":

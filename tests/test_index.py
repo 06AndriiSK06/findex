@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 
 from findex.index import DocMeta, Posting, build_index
-from findex.search import search
+from findex.query import parse_query
 from findex.store import load_array_binary, load_pickle, save_array_binary, save_pickle
 
 
@@ -42,8 +42,7 @@ def test_build_index_and_boolean_queries(tmp_path: Path) -> None:
         ("python NOT generators", [1]),
         ("NOT python", [2]),
     ]:
-        assert search(idx, query, engine="merge") == expected
-        assert search(idx, query, engine="set") == expected
+        assert sorted(parse_query(query).evaluate(idx)) == expected
 
 
 def test_store_roundtrip_pickle_and_binary(tmp_path: Path) -> None:
