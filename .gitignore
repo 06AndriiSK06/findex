@@ -13,3 +13,7 @@ data/
 
 *.bin
 *.pkl
+
+dist/
+.coverage
+htmlcov/

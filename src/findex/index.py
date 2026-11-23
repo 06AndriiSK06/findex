@@ -1,31 +1,22 @@
 from __future__ import annotations
 
-import argparse
-import functools
-import pickle
-import shutil
-import time
-import tracemalloc
+import logging
 from array import array
 from collections import Counter, defaultdict
-from collections.abc import Iterator, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass
+from functools import cached_property
 from pathlib import Path
 
 from findex.corpus import iter_documents
 from findex.timing import timed
 from findex.tokenize import tokenize
 
+log = logging.getLogger(__name__)
+
 
 @dataclass(frozen=True, slots=True)
 class Posting:
-    doc_id: int
-    tf: int
-    positions: tuple[int, ...] = ()
-
-
-@dataclass(frozen=True)
-class PlainPosting:
     doc_id: int
     tf: int
     positions: tuple[int, ...] = ()
@@ -69,7 +60,7 @@ class Index(Mapping[str, list[Posting]]):
     def num_docs(self) -> int:
         return len(self._doc_lengths)
 
-    @functools.cached_property
+    @cached_property
     def avg_doc_length(self) -> float:
         if not self._doc_lengths:
             return 0.0
@@ -101,7 +92,46 @@ class Index(Mapping[str, list[Posting]]):
         return f"Index(terms={len(self):_}, docs={self.num_docs:_})"
 
 
-InvertedIndex = Index
+def intersect_merge(a: Iterable[int], b: Iterable[int]) -> list[int]:
+    list_a = list(a)
+    list_b = list(b)
+    result: list[int] = []
+    i = 0
+    j = 0
+    while i < len(list_a) and j < len(list_b):
+        if list_a[i] == list_b[j]:
+            result.append(list_a[i])
+            i += 1
+            j += 1
+        elif list_a[i] < list_b[j]:
+            i += 1
+        else:
+            j += 1
+    return result
+
+
+def union_merge(a: Iterable[int], b: Iterable[int]) -> list[int]:
+    list_a = list(a)
+    list_b = list(b)
+    result: list[int] = []
+    i = 0
+    j = 0
+    while i < len(list_a) and j < len(list_b):
+        if list_a[i] == list_b[j]:
+            result.append(list_a[i])
+            i += 1
+            j += 1
+        elif list_a[i] < list_b[j]:
+            result.append(list_a[i])
+            i += 1
+        else:
+            result.append(list_b[j])
+            j += 1
+    if i < len(list_a):
+        result.extend(list_a[i:])
+    if j < len(list_b):
+        result.extend(list_b[j:])
+    return result
 
 
 @timed
@@ -110,6 +140,7 @@ def build_index(
     *,
     limit: int | None = None,
     with_positions: bool = False,
+    on_doc: Callable[[int], None] | None = None,
 ) -> Index:
     postings_map: dict[str, list[Posting]] = defaultdict(list)
     doc_lengths: dict[int, int] = {}
@@ -143,6 +174,10 @@ def build_index(
             for term, tf in counts.items():
                 postings_map[term].append(Posting(doc_id=doc_id, tf=tf))
 
+        if on_doc is not None:
+            on_doc(doc_id + 1)
+
+    log.info("Indexed %d documents (%d terms)", len(doc_meta), len(postings_map))
     return Index(
         postings=dict(postings_map),
         doc_lengths=doc_lengths,
@@ -151,170 +186,10 @@ def build_index(
     )
 
 
-def _build_plain_postings(root: Path, limit: int | None = None) -> dict[str, list[PlainPosting]]:
-    postings_map: dict[str, list[PlainPosting]] = defaultdict(list)
-    for doc_id, doc in enumerate(iter_documents(root)):
-        if limit is not None and doc_id >= limit:
-            break
-        counts = Counter(tokenize(doc.text))
-        for term, tf in counts.items():
-            postings_map[term].append(PlainPosting(doc_id=doc_id, tf=tf))
-    return dict(postings_map)
-
-
-def _build_slotted_postings(root: Path, limit: int | None = None) -> dict[str, list[Posting]]:
-    postings_map: dict[str, list[Posting]] = defaultdict(list)
-    for doc_id, doc in enumerate(iter_documents(root)):
-        if limit is not None and doc_id >= limit:
-            break
-        counts = Counter(tokenize(doc.text))
-        for term, tf in counts.items():
-            postings_map[term].append(Posting(doc_id=doc_id, tf=tf))
-    return dict(postings_map)
-
-
-def _build_array_postings(
-    root: Path, limit: int | None = None
-) -> dict[str, tuple[array[int], array[int]]]:
-    raw_map: dict[str, tuple[array[int], array[int]]] = defaultdict(
-        lambda: (array("I"), array("I"))
-    )
-    for doc_id, doc in enumerate(iter_documents(root)):
-        if limit is not None and doc_id >= limit:
-            break
-        counts = Counter(tokenize(doc.text))
-        for term, tf in counts.items():
-            doc_ids, tfs = raw_map[term]
-            doc_ids.append(doc_id)
-            tfs.append(tf)
-    return dict(raw_map)
-
-
-def run_memory_benchmark(root: Path, out_dir: Path, limit: int | None = None) -> None:
-    out_dir.mkdir(parents=True, exist_ok=True)
-    results: list[tuple[str, float, float, float]] = []
-
-    tracemalloc.start()
-    plain = _build_plain_postings(root, limit=limit)
-    _, peak_plain = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
-
-    plain_path = out_dir / "bench_plain.pkl"
-    plain_path.write_bytes(pickle.dumps(plain, protocol=pickle.HIGHEST_PROTOCOL))
-    t0 = time.perf_counter()
-    _ = pickle.loads(plain_path.read_bytes())
-    load_plain = time.perf_counter() - t0
-    results.append(
-        (
-            "list[Posting] (plain @dataclass)",
-            peak_plain / (1024 * 1024),
-            plain_path.stat().st_size / (1024 * 1024),
-            load_plain,
-        )
-    )
-    del plain
-
-    tracemalloc.start()
-    slotted = _build_slotted_postings(root, limit=limit)
-    _, peak_slotted = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
-
-    slotted_path = out_dir / "bench_slotted.pkl"
-    slotted_path.write_bytes(pickle.dumps(slotted, protocol=pickle.HIGHEST_PROTOCOL))
-    t0 = time.perf_counter()
-    _ = pickle.loads(slotted_path.read_bytes())
-    load_slotted = time.perf_counter() - t0
-    results.append(
-        (
-            "list[Posting] (slots=True)",
-            peak_slotted / (1024 * 1024),
-            slotted_path.stat().st_size / (1024 * 1024),
-            load_slotted,
-        )
-    )
-    del slotted
-
-    tracemalloc.start()
-    arr_postings = _build_array_postings(root, limit=limit)
-    _, peak_arr = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
-
-    arr_path = out_dir / "bench_array.pkl"
-    arr_path.write_bytes(pickle.dumps(arr_postings, protocol=pickle.HIGHEST_PROTOCOL))
-    t0 = time.perf_counter()
-    _ = pickle.loads(arr_path.read_bytes())
-    load_arr = time.perf_counter() - t0
-    results.append(
-        (
-            "array('I') pairs (doc_ids, tfs)",
-            peak_arr / (1024 * 1024),
-            arr_path.stat().st_size / (1024 * 1024),
-            load_arr,
-        )
-    )
-    del arr_postings
-
-    print("\n--- Memory & Storage Table ---")
-    print("| Postings representation | Peak memory (build) | Index file size | Load time |")
-    print("| :--- | ---: | ---: | ---: |")
-    for label, mem_mib, size_mib, load_s in results:
-        print(f"| {label} | {mem_mib:.2f} MiB | {size_mib:.2f} MiB | {load_s:.4f} s |")
-
-    for p in (plain_path, slotted_path, arr_path):
-        p.unlink(missing_ok=True)
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Build and persist inverted index.")
-    parser.add_argument("corpus_dir", type=Path, help="Path to corpus directory")
-    parser.add_argument("--out", type=Path, default=Path("index.bin"), help="Output index file")
-    parser.add_argument(
-        "--format",
-        choices=("binary", "pickle"),
-        default="binary",
-        help="Serialization format (default: binary)",
-    )
-    parser.add_argument("--positions", action="store_true", help="Record token positions")
-    parser.add_argument("--limit", type=int, default=None, help="Max documents to index")
-    parser.add_argument(
-        "--benchmark",
-        action="store_true",
-        help="Run 3-way memory and storage benchmark",
-    )
-    args = parser.parse_args()
-
-    if args.benchmark:
-        run_memory_benchmark(args.corpus_dir, Path(".bench_tmp"), limit=args.limit)
-        shutil.rmtree(".bench_tmp", ignore_errors=True)
-        return
-
-    from findex.store import save_array_binary, save_pickle
-
-    tracemalloc.start()
-    t0 = time.perf_counter()
-    index = build_index(args.corpus_dir, limit=args.limit, with_positions=args.positions)
-    build_elapsed = time.perf_counter() - t0
-    _, peak_bytes = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
-
-    t_save0 = time.perf_counter()
-    if args.format == "pickle":
-        save_pickle(index, args.out)
-    else:
-        save_array_binary(index, args.out)
-    save_elapsed = time.perf_counter() - t_save0
-
-    size_mib = args.out.stat().st_size / (1024 * 1024)
-    total_postings = sum(len(plist) for plist in index.postings.values())
-
-    print(f"Built {index!r}")
-    print(f"Total postings:    {total_postings}")
-    print(f"Positions stored:  {index.with_positions}")
-    print(f"Build time:        {build_elapsed:.3f} s")
-    print(f"Save time ({args.format}): {save_elapsed:.4f} s")
-    print(f"Index file size:   {size_mib:.2f} MiB")
-    print(f"Peak memory:       {peak_bytes / (1024 * 1024):.2f} MiB")
-
-
-if __name__ == "__main__":
-    main()
+def pack_postings_arrays(plist: Iterable[Posting]) -> tuple[array[int], array[int]]:
+    doc_ids = array("I")
+    tfs = array("I")
+    for p in plist:
+        doc_ids.append(p.doc_id)
+        tfs.append(p.tf)
+    return doc_ids, tfs

@@ -4,9 +4,11 @@ import math
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol
+from typing import Literal, Protocol
 
 from findex.index import Index, Posting
+
+ScorerName = Literal["bm25", "tfidf"]
 
 
 class Scorer(Protocol):
@@ -40,6 +42,12 @@ class BM25:
         denom = posting.tf + self.k1 * (1.0 - self.b + self.b * (dl / avgdl))
         tf_norm = (posting.tf * (self.k1 + 1.0)) / denom
         return idf * tf_norm
+
+
+def make_scorer(name: ScorerName) -> Scorer:
+    if name == "tfidf":
+        return TfIdf()
+    return BM25()
 
 
 @dataclass(order=True, frozen=True, slots=True)

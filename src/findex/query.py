@@ -3,8 +3,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from findex.index import Index
+from findex.index import Index, intersect_merge, union_merge
 from findex.tokenize import tokenize
+
+
+class QuerySyntaxError(ValueError):
+    """Raised when a user search query has invalid syntax."""
 
 
 class QueryNode:
@@ -48,7 +52,7 @@ class Phrase(QueryNode):
         if len(self.words) == 1:
             return Term(self.words[0]).evaluate(index)
         if not index.with_positions:
-            raise ValueError(
+            raise QuerySyntaxError(
                 "Phrase queries require positional postings; rebuild index with --positions"
             )
 
@@ -83,7 +87,9 @@ class And(QueryNode):
     right: QueryNode
 
     def evaluate(self, index: Index) -> set[int]:
-        return self.left.evaluate(index) & self.right.evaluate(index)
+        lhs = sorted(self.left.evaluate(index))
+        rhs = sorted(self.right.evaluate(index))
+        return set(intersect_merge(lhs, rhs))
 
     def terms(self) -> list[str]:
         return self.left.terms() + self.right.terms()
@@ -95,7 +101,9 @@ class Or(QueryNode):
     right: QueryNode
 
     def evaluate(self, index: Index) -> set[int]:
-        return self.left.evaluate(index) | self.right.evaluate(index)
+        lhs = sorted(self.left.evaluate(index))
+        rhs = sorted(self.right.evaluate(index))
+        return set(union_merge(lhs, rhs))
 
     def terms(self) -> list[str]:
         return self.left.terms() + self.right.terms()
@@ -138,7 +146,7 @@ def _lex_query(raw: str) -> list[_Tok]:
     while pos < len(raw):
         match = _TOKEN_SPEC.match(raw, pos)
         if not match:
-            raise SyntaxError(f"Unexpected character at position {pos}: {raw[pos:]!r}")
+            raise QuerySyntaxError(f"Unexpected character at position {pos}: {raw[pos:]!r}")
         pos = match.end()
         kind = match.lastgroup
         if kind is None:
@@ -149,14 +157,14 @@ def _lex_query(raw: str) -> list[_Tok]:
             if upper in {"AND", "OR", "NOT"}:
                 tokens.append(_Tok(upper, upper))
             else:
-                norm = list(tokenize(val))
-                for t in norm:
+                for t in tokenize(val):
                     tokens.append(_Tok("TERM", t))
         elif kind == "PHRASE":
             inner = val[1:-1]
             words = tuple(tokenize(inner))
-            if words:
-                tokens.append(_Tok("PHRASE", " ".join(words)))
+            if not words:
+                raise QuerySyntaxError("Empty quoted phrase in query")
+            tokens.append(_Tok("PHRASE", " ".join(words)))
         else:
             tokens.append(_Tok(kind, val))
     return tokens
@@ -179,10 +187,10 @@ class _Parser:
 
     def parse(self) -> QueryNode:
         if not self.tokens:
-            raise ValueError("Empty query")
+            raise QuerySyntaxError("Query cannot be empty")
         node = self._parse_or()
         if self.peek() is not None:
-            raise SyntaxError(f"Unexpected token {self.peek()!r}")
+            raise QuerySyntaxError(f"Unexpected token {self.peek()!r}")
         return node
 
     def _parse_or(self) -> QueryNode:
@@ -217,7 +225,7 @@ class _Parser:
     def _parse_atom(self) -> QueryNode:
         tok = self.peek()
         if tok is None:
-            raise SyntaxError("Unexpected end of query")
+            raise QuerySyntaxError("Unexpected end of query")
         if tok.kind == "TERM":
             self.consume()
             return Term(tok.value)
@@ -232,10 +240,10 @@ class _Parser:
             node = self._parse_or()
             closing = self.peek()
             if closing is None or closing.kind != "RPAREN":
-                raise SyntaxError("Unclosed '(' in query")
+                raise QuerySyntaxError("Unclosed '(' in query")
             self.consume()
             return node
-        raise SyntaxError(f"Unexpected token {tok!r}")
+        raise QuerySyntaxError(f"Unexpected token {tok!r}")
 
 
 def parse_query(raw: str) -> QueryNode:

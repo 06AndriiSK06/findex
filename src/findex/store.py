@@ -1,18 +1,29 @@
 from __future__ import annotations
 
 import json
+import logging
 import pickle
 import struct
 from array import array
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from pathlib import Path
+from typing import TypedDict
 
 from findex.index import DocMeta, Index, Posting
 from findex.timing import timed
 
+log = logging.getLogger(__name__)
+
 MAGIC_V1 = b"FIDX0001"
 MAGIC_V2 = b"FIDX0002"
+
+
+class _IndexHeader(TypedDict):
+    with_positions: bool
+    doc_lengths: dict[str, int]
+    doc_meta: dict[str, list[str]]
+    terms: dict[str, list[int]]
 
 
 def save_pickle(index: Index, path: Path) -> None:
@@ -21,11 +32,12 @@ def save_pickle(index: Index, path: Path) -> None:
 
 
 def load_pickle(path: Path) -> Index:
-    # SECURITY WARNING: pickle.load executes arbitrary Python bytecode embedded in the
-    # stream during unpickling (__reduce__). Never call load_pickle on untrusted or
-    # network-downloaded files; only load index files generated locally.
+    # SECURITY WARNING: pickle.load executes arbitrary Python bytecode via __reduce__.
+    # Never call load_pickle on untrusted or network-downloaded files.
+    if not path.exists():
+        raise FileNotFoundError(f"Index file not found: {path}")
     with path.open("rb") as f:
-        obj = pickle.load(f)
+        obj: object = pickle.load(f)
     if not isinstance(obj, Index):
         raise TypeError("Invalid pickle payload: expected Index")
     return obj
@@ -52,12 +64,10 @@ def save_array_binary(index: Index, path: Path) -> None:
         terms_meta[term] = [offset, count]
         offset += len(raw)
 
-    header = {
+    header: _IndexHeader = {
         "with_positions": index.with_positions,
         "doc_lengths": {str(k): v for k, v in index.doc_lengths.items()},
-        "doc_meta": {
-            str(k): [m.path, m.title] for k, m in index.doc_meta.items()
-        },
+        "doc_meta": {str(k): [m.path, m.title] for k, m in index.doc_meta.items()},
         "terms": terms_meta,
     }
     header_bytes = json.dumps(header, separators=(",", ":")).encode("utf-8")
@@ -71,25 +81,26 @@ def save_array_binary(index: Index, path: Path) -> None:
 
 
 def load_array_binary(path: Path) -> Index:
+    if not path.exists():
+        raise FileNotFoundError(f"Index file not found: {path}")
     data = path.read_bytes()
-    magic = data[:8]
-    if magic not in {MAGIC_V1, MAGIC_V2}:
-        raise ValueError("Invalid binary index magic header")
+    if len(data) < 12 or data[:8] not in {MAGIC_V1, MAGIC_V2}:
+        raise ValueError(f"Invalid binary index header in {path}")
 
-    (header_len,) = struct.unpack("<I", data[8:12])
+    header_len: int = struct.unpack("<I", data[8:12])[0]
     header_end = 12 + header_len
-    header = json.loads(data[12:header_end].decode("utf-8"))
+    header: _IndexHeader = json.loads(data[12:header_end].decode("utf-8"))
     payload = memoryview(data)[header_end:]
 
-    with_positions = bool(header.get("with_positions", False))
+    with_positions = bool(header["with_positions"])
     doc_lengths = {int(k): int(v) for k, v in header["doc_lengths"].items()}
     doc_meta = {
-        int(k): DocMeta(doc_id=int(k), path=v[0], title=v[1])
-        for k, v in header["doc_meta"].items()
+        int(k): DocMeta(doc_id=int(k), path=v[0], title=v[1]) for k, v in header["doc_meta"].items()
     }
 
     postings: dict[str, list[Posting]] = {}
-    for term, (offset, count) in header["terms"].items():
+    for term, meta_pair in header["terms"].items():
+        offset, count = meta_pair[0], meta_pair[1]
         half = count * 4
         doc_ids = array("I")
         tfs = array("I")
@@ -126,15 +137,18 @@ def load_array_binary(path: Path) -> Index:
 
 @timed
 def load_index(path: Path) -> Index:
+    if not path.exists():
+        raise FileNotFoundError(f"Index file not found: {path}")
     with path.open("rb") as f:
         head = f.read(8)
+    log.info("Loading index from %s", path)
     if head in {MAGIC_V1, MAGIC_V2}:
         return load_array_binary(path)
     return load_pickle(path)
 
 
 @contextmanager
-def open_index(path: Path) -> Iterator[Index]:
+def open_index(path: Path) -> Generator[Index, None, None]:
     index = load_index(path)
     try:
         yield index
