@@ -1,6 +1,52 @@
 # findex — Fast Local & Web Search Engine in Python
 
-`findex` is a modular, type-checked (`pyright --strict`) command-line search engine written in Python 3.14. It supports polite asynchronous web crawling, streaming JSONL ingestion, multi-process/multi-threaded inverted index construction, binary index persistence, and ranked retrieval (TF-IDF, BM25, boolean, and positional phrase queries).
+**Live Production Deployment (Render):** https://findex-a9ma.onrender.com
+
+- **Web Search UI:** https://findex-a9ma.onrender.com/
+- **Interactive OpenAPI / Swagger Docs:** https://findex-a9ma.onrender.com/docs
+- **Health Check:** https://findex-a9ma.onrender.com/health
+- **Index Stats:** https://findex-a9ma.onrender.com/stats
+
+`findex` is a modular, type-checked (`pyright --strict`) command-line and web search engine written in Python 3.14. It supports polite asynchronous web crawling, streaming JSONL ingestion, multi-process/multi-threaded inverted index construction, binary index persistence, ranked retrieval (TF-IDF, BM25, boolean, and positional phrase queries), and a production FastAPI web service.
+
+---
+
+## Web Service & HTTP API (`findex.web`)
+
+`findex` exposes an asynchronous REST API and server-rendered HTML search interface built with **FastAPI**, **Pydantic v2** (`pydantic-settings`), **Jinja2**, and **Uvicorn**.
+
+### Endpoints
+
+| Method | Path             | Description                                                                                                         |
+| :----- | :--------------- | :------------------------------------------------------------------------------------------------------------------ |
+| `GET`  | `/`              | Server-rendered HTML search UI with `<mark>` snippet highlighting and pagination                                    |
+| `GET`  | `/doc/{doc_id}`  | HTML document viewer with query context back-navigation                                                             |
+| `GET`  | `/search`        | JSON search endpoint (`q`, `k`, `page`, `scorer=bm25\|tfidf`)                                                       |
+| `GET`  | `/docs/{doc_id}` | Full JSON document payload (`doc_id`, `title`, `path`, `content`, `token_count`)                                    |
+| `GET`  | `/stats`         | Index statistics (`num_docs`, `vocab_size`, `total_tokens`, `avg_doc_length`, `index_size_bytes`, `uptime_seconds`) |
+| `GET`  | `/health`        | Readiness/liveness probe (`200 OK` when index is loaded, `503 Service Unavailable` otherwise)                       |
+| `GET`  | `/docs`          | Auto-generated OpenAPI 3.1 Swagger UI                                                                               |
+
+### Running Locally & via Docker
+
+```powershell
+# Start web server directly via CLI
+uv run findex serve --index data/index.bin --host 0.0.0.0 --port 8000
+
+# Or build and run multi-stage non-root Docker image
+docker build -t findex:0.7.0 .
+docker run -d -p 8000:8000 -e INDEX_PATH=/app/data/index.bin findex:0.7.0
+```
+
+### Concurrency Architecture & Load Benchmarks
+
+- **Thread-Pool Offloading (`def` vs `async def`):** Query parsing, inverted-index intersection, and BM25/TF-IDF scoring are synchronous CPU/memory-bound operations. Route handlers (`/search`, `/docs/{doc_id}`, `/`, `/doc/{doc_id}`) are intentionally defined as plain `def` functions rather than `async def`. FastAPI/Starlette automatically dispatches `def` endpoints onto AnyIO's worker thread pool (`40` threads by default), preventing long searches from blocking the `asyncio` event loop while `/health` and `/stats` remain responsive.
+- **GIL & Multi-Worker Scaling:** Under Python's GIL, thread-pool offloading prevents event-loop stalls and overlaps any file I/O (reading document contents on `/docs/{doc_id}`), while pure-Python CPU parallelism scales across OS processes via `--workers N` (`uvicorn --workers 4`). Because the loaded `Index` is read-only after startup, each worker process holds its own in-memory snapshot with zero lock contention.
+
+| Environment                                 | Workload                                                                 | Throughput                                    | p50 Latency | p95 Latency | p99 Latency |
+| :------------------------------------------ | :----------------------------------------------------------------------- | :-------------------------------------------- | :---------- | :---------- | :---------- |
+| **Localhost (Windows, 1 worker)**           | 200 reqs, concurrency 20 (`/search?q=python&k=10`)                       | **206.2 req/s**                               | `64.87 ms`  | `226.05 ms` | `324.24 ms` |
+| **Cloud Production (Render Free, US-West)** | 100 reqs, concurrency 10 (`/search?q=python&k=10`, remote RTT from Kyiv) | **35.5 req/s** (`0.63 ms` server search time) | `234.01 ms` | `338.02 ms` | `714.48 ms` |
 
 ---
 
@@ -23,8 +69,8 @@
 - **Query Engine & Ranking (`findex.query`, `findex.ranking`, `findex.search`):**
   - Boolean (`AND`, `OR`, `NOT`), phrase (`"exact phrase"`), and free-text queries.
   - Okapi BM25 and TF-IDF scoring with document metadata and snippets.
-- **CLI (`findex.cli`):**
-  - Built with `typer` and `rich` live progress/status tables (`findex crawl`, `findex index`, `findex search`, `findex stats`).
+- **CLI & Web Server (`findex.cli`, `findex.web`):**
+  - Built with `typer` and `rich` live progress/status tables (`findex crawl`, `findex index`, `findex search`, `findex stats`, `findex serve`).
 
 ---
 
@@ -42,77 +88,3 @@ uv run ruff format --check .
 uv run pyright
 uv run pytest
 ```
-
----
-
-## Quickstart CLI Usage
-
-### 1. Crawl a Website to Streaming JSONL
-
-```powershell
-uv run findex crawl https://docs.python.org/3/ `
-  --max-pages 200 `
-  --concurrency 20 `
-  --per-host 5 `
-  --min-delay 0.05 `
-  --out data/lab06_bench/crawl_c20.jsonl `
-  --log data/lab06_bench/crawl_c20.log
-```
-
-### 2. Build a Positional Inverted Index
-
-```powershell
-# From crawled JSONL
-uv run findex index data/lab06_bench/crawl_c20.jsonl --out data/lab06_bench/crawl_c20.bin --positions
-# Indexed 200 documents (15147 terms) via processes (workers=8) -> data\lab06_bench\crawl_c20.bin
-
-# Or from a local directory of text/markdown files
-uv run findex index data/corpus --out data/index.bin --positions --executor processes --workers 8
-```
-
-### 3. Search the Index
-
-```powershell
-uv run findex search data/lab06_bench/crawl_c20.bin "asyncio" --k 3
-```
-
----
-
-## Lab 06 — Async Crawler (`asyncio` + `httpx`)
-
-### Target Site & Politeness Policy
-
-- **Seed URL:** `https://docs.python.org/3/` (official Python 3 documentation; `robots.txt` explicitly allows automated indexing of `/3/`).
-- **Identification & Limits:**
-  - Custom `User-Agent`: `findex-crawler/0.4 (+https://github.com/student/findex)`.
-  - Per-origin `robots.txt` check before every request (`RobotsCache`), honoring `Disallow` rules and `Crawl-delay`.
-  - Per-host semaphore (`per_host <= 5`) and minimum delay between requests to the same host (`min_delay = 0.05s`).
-  - Bounded retries with exponential backoff + jitter on `429`, `502`, `503`, `504`, and transport timeouts (`Retry-After` respected).
-
-### Concurrency Benchmark (`max_pages = 200`)
-
-Measured via `scripts/bench_lab06.py` (`docs/bench_lab06.json`) against `https://docs.python.org/3/` across concurrency levels `1`, `5`, and `20`:
-
-| Concurrency | Pages | Wall (s) | Pages/s | Errors | Peak RSS (MB) |
-| ----------- | ----: | -------: | ------: | -----: | ------------: |
-| 1           |   200 |   29.774 |    6.72 |      0 |         408.7 |
-| 5           |   200 |   18.290 |   10.93 |      0 |         269.1 |
-| 20          |   200 |   18.109 |   11.04 |      0 |         414.9 |
-
-**Observations:**
-
-- Increasing concurrency from `1` to `5` reduces wall-clock time by **38.6%** (`29.774s → 18.290s`) and raises throughput from `6.72` to `10.93` pages/s by overlapping network I/O latency across concurrent tasks.
-- Increasing global concurrency from `5` to `20` produces nearly identical throughput (`11.04` pages/s, `18.109s`) because all 200 pages reside on a single host (`docs.python.org`), where the per-host semaphore (`per_host = 5`) and pacing delay (`min_delay = 0.05s`) intentionally throttle per-domain load.
-
-### Error Handling & Log Sample
-
-Permanent HTTP errors (such as `404 Not Found`) are logged immediately without wasting retry budget and without interrupting active workers:
-
-```text
-2026-11-24T00:51:34+00:00 | status=404 | bytes=9548 | 0.163s | https://docs.python.org/3/nonexistent-lab06-check | HTTP 404
-```
-
-### Verification Summary
-
-- **Unit & Integration Tests:** `48 passed` (`pytest`), including offline `httpx.MockTransport` tests for URL canonicalization, `429`/`503` backoff retries, `404` non-retry behavior, `robots.txt` disallow caching, and end-to-end JSONL streaming into `build_index`.
-- **Static Analysis:** `0 errors` under `pyright` (`strict` mode) and `ruff`.
