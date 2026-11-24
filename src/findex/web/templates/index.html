@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if query %}{{ query }} — {% endif %}findex Search</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1><a href="/">findex</a></h1>
+        <span class="meta-pill">
+          {{ num_docs }} docs · {{ vocab_size }} terms ·
+          <a href="/docs" target="_blank" rel="noopener">API Docs</a>
+        </span>
+      </header>
+
+      <form class="search-form" method="get" action="/">
+        <input
+          type="text"
+          name="q"
+          value="{{ query }}"
+          placeholder="Search documents (supports AND, OR, NOT, &quot;phrases&quot;)..."
+          autofocus
+          required
+        />
+        <select name="scorer" aria-label="Ranking algorithm">
+          <option value="bm25" {% if scorer == "bm25" %}selected{% endif %}>BM25</option>
+          <option value="tfidf" {% if scorer == "tfidf" %}selected{% endif %}>TF-IDF</option>
+        </select>
+        <input type="hidden" name="k" value="{{ k }}" />
+        <button type="submit">Search</button>
+      </form>
+
+      {% if error_msg %}
+      <div class="error-box">{{ error_msg }}</div>
+      {% endif %}
+
+      {% if search_res is not none %}
+      <p class="summary">
+        Found <strong>{{ search_res.total }}</strong> result{{ "" if search_res.total == 1 else "s" }}
+        in <strong>{{ "%.2f"|format(search_res.took_ms) }} ms</strong>
+        {% if search_res.total_pages > 0 %}
+        (page {{ search_res.page }} of {{ search_res.total_pages }})
+        {% endif %}
+      </p>
+
+      {% if search_res.results %}
+        {% for item in search_res.results %}
+        <article class="result-card">
+          <div class="result-header">
+            <a class="result-title" href="/doc/{{ item.doc_id }}?q={{ query|urlencode }}">
+              {{ item.title }}
+            </a>
+            <span class="score-badge">{{ scorer|upper }} {{ "%.4f"|format(item.score) }}</span>
+          </div>
+          {% if item.path %}
+          <div class="result-path">{{ item.path }}</div>
+          {% endif %}
+          {% if item.snippet %}
+          <p class="result-snippet">{{ item.snippet | highlight_snippet }}</p>
+          {% endif %}
+        </article>
+        {% endfor %}
+
+        {% if search_res.total_pages > 1 %}
+        <nav class="pagination" aria-label="Search result pages">
+          <div>
+            {% if search_res.page > 1 %}
+            <a href="/?q={{ query|urlencode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page - 1 }}">
+              ← Previous
+            </a>
+            {% endif %}
+          </div>
+          <span>Page {{ search_res.page }} / {{ search_res.total_pages }}</span>
+          <div>
+            {% if search_res.page < search_res.total_pages %}
+            <a href="/?q={{ query|urlencode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page + 1 }}">
+              Next →
+            </a>
+            {% endif %}
+          </div>
+        </nav>
+        {% endif %}
+      {% else %}
+        <p class="summary">No documents matched your query.</p>
+      {% endif %}
+      {% endif %}
+    </main>
+  </body>
+</html>

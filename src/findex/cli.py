@@ -345,5 +345,42 @@ def stats_cmd(
         _stdout().print(terms_table)
 
 
+@app.command("serve")
+def serve_cmd(
+    index_path: Annotated[
+        Path | None,
+        typer.Option("--index", "-i", help="Path to serialized index file (overrides INDEX_PATH)"),
+    ] = None,
+    host: Annotated[
+        str,
+        typer.Option("--host", help="Host interface to bind"),
+    ] = "0.0.0.0",
+    port: Annotated[
+        int,
+        typer.Option("--port", "-p", min=1, max=65535, help="Port to bind"),
+    ] = 8000,
+    workers: Annotated[
+        int,
+        typer.Option("--workers", "-w", min=1, help="Number of uvicorn worker processes"),
+    ] = 1,
+    reload: Annotated[
+        bool,
+        typer.Option("--reload", help="Enable auto-reload for development"),
+    ] = False,
+) -> None:
+    import uvicorn
+
+    if index_path is not None:
+        os.environ["INDEX_PATH"] = str(index_path)
+
+    uvicorn.run(
+        "findex.web:app",
+        host=host,
+        port=port,
+        workers=workers,
+        reload=reload,
+    )
+
+
 if __name__ == "__main__":
     app()

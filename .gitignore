@@ -17,3 +17,7 @@ data/
 dist/
 .coverage
 htmlcov/
+
+!data/
+data/*
+!data/index.bin

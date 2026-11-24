@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ doc.title }} — findex</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1><a href="/">findex</a></h1>
+        <span class="meta-pill">Doc #{{ doc.doc_id }} · {{ token_count }} tokens</span>
+      </header>
+
+      {% if query %}
+      <a class="back-link" href="/?q={{ query|urlencode }}">← Back to results for "{{ query }}"</a>
+      {% else %}
+      <a class="back-link" href="/">← Back to search</a>
+      {% endif %}
+
+      <h2>{{ doc.title }}</h2>
+      <p class="result-path">{{ doc.path }}</p>
+      <pre class="doc-body">{{ content }}</pre>
+    </main>
+  </body>
+</html>
