@@ -9,6 +9,7 @@ description = "An incremental full-text search engine built from scratch in Pyth
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "httpx>=0.28.1",
     "rich>=13.9.0",
     "typer>=0.15.0",
 ]
@@ -23,6 +24,7 @@ dev = [
     "psutil>=7.2.2",
     "pyright>=1.1.390",
     "pytest>=8.3.0",
+    "pytest-asyncio>=1.5.0",
     "pytest-cov>=6.0.0",
     "ruff>=0.8.0",
 ]
@@ -37,6 +39,7 @@ include = ["src", "tests"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+asyncio_mode = "auto"
 markers = [
     "slow: marks tests taking longer than 1 second",
 ]

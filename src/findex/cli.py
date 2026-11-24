@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import os
@@ -9,10 +10,12 @@ from typing import Annotated
 
 import typer
 from rich.console import Console
+from rich.live import Live
 from rich.markup import escape
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 from rich.table import Table
 
+from findex.crawler import CrawlStats, crawl
 from findex.index import ExecutorKind, build_index
 from findex.query import QuerySyntaxError
 from findex.ranking import ScorerName, make_scorer
@@ -84,6 +87,93 @@ def main_callback(
     ] = 0,
 ) -> None:
     _configure_logging(verbose)
+
+
+@app.command("crawl")
+def crawl_cmd(
+    seed_url: Annotated[str, typer.Argument(help="Initial seed URL to crawl")],
+    max_pages: Annotated[
+        int,
+        typer.Option("--max-pages", min=1, help="Maximum number of pages to fetch"),
+    ] = 200,
+    concurrency: Annotated[
+        int,
+        typer.Option("--concurrency", "-c", min=1, help="Max concurrent in-flight requests"),
+    ] = 10,
+    per_host: Annotated[
+        int,
+        typer.Option("--per-host", min=1, help="Max concurrent requests per host"),
+    ] = 2,
+    min_delay: Annotated[
+        float,
+        typer.Option("--min-delay", min=0.0, help="Minimum delay (s) between requests per host"),
+    ] = 0.1,
+    out: Annotated[
+        Path,
+        typer.Option("--out", "-o", help="Streaming JSONL output file"),
+    ] = Path("data/crawl.jsonl"),
+    log_file: Annotated[
+        Path,
+        typer.Option("--log", help="Per-URL crawl log path"),
+    ] = Path("crawl.log"),
+    debug: Annotated[
+        bool,
+        typer.Option("--debug", help="Run asyncio event loop in debug mode"),
+    ] = False,
+) -> None:
+    stats = CrawlStats()
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    def _render_status() -> Table:
+        tbl = Table(title="findex async crawler", show_header=True)
+        tbl.add_column("Pages", justify="right", style="bold green")
+        tbl.add_column("Pages/s", justify="right", style="cyan")
+        tbl.add_column("In-flight", justify="right", style="yellow")
+        tbl.add_column("Errors", justify="right", style="red")
+        tbl.add_column("Queue", justify="right", style="magenta")
+        tbl.add_row(
+            f"{stats.pages_fetched} / {max_pages}",
+            f"{stats.pages_per_sec:.2f}",
+            str(stats.in_flight),
+            str(stats.errors),
+            str(stats.queue_depth),
+        )
+        return tbl
+
+    async def _run_crawl() -> None:
+        with (
+            out.open("w", encoding="utf-8") as jsonl_fh,
+            Live(_render_status(), console=_stderr(), refresh_per_second=8, transient=True) as live,
+        ):
+            async for page in crawl(
+                [seed_url],
+                max_pages=max_pages,
+                concurrency=concurrency,
+                per_host=per_host,
+                min_delay=min_delay,
+                log_path=log_file,
+                stats=stats,
+            ):
+                record = {
+                    "url": page.url,
+                    "title": page.title,
+                    "text": page.text,
+                    "fetched_at": page.fetched_at,
+                }
+                jsonl_fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+                jsonl_fh.flush()
+                live.update(_render_status())
+
+    try:
+        asyncio.run(_run_crawl(), debug=debug)
+    except (OSError, ValueError) as exc:
+        raise _fail(str(exc)) from None
+
+    _stdout().print(
+        f"[bold green]Crawled[/bold green] {stats.pages_fetched} pages "
+        f"in {stats.elapsed:.2f}s ({stats.pages_per_sec:.2f} pages/s, errors={stats.errors}) "
+        f"-> [cyan]{escape(str(out))}[/cyan]"
+    )
 
 
 @app.command("index")

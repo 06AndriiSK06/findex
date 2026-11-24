@@ -4,14 +4,14 @@ import logging
 import time
 from array import array
 from collections import Counter, defaultdict
-from collections.abc import Callable, Iterable, Iterator, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
 from typing import Literal
 
-from findex.corpus import collect_document_paths
+from findex.corpus import Document, collect_document_paths, iter_documents
 from findex.timing import timed
 from findex.tokenize import tokenize
 
@@ -149,8 +149,8 @@ def union_merge(a: Iterable[int], b: Iterable[int]) -> list[int]:
     return result
 
 
-def build_partial(
-    doc_paths: list[Path],
+def _build_partial_from_docs(
+    docs: Sequence[Document],
     *,
     start_doc_id: int = 0,
     with_positions: bool = False,
@@ -160,22 +160,17 @@ def build_partial(
     doc_meta: dict[int, DocMeta] = {}
 
     next_id = start_doc_id
-    for path in doc_paths:
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
-            log.warning("Skipping undecodable file: %s", path)
-            continue
-
+    for doc in docs:
         doc_id = next_id
         next_id += 1
-        title = path.stem.replace("_", " ")
-        doc_meta[doc_id] = DocMeta(doc_id=doc_id, path=str(path), title=title)
+        title = doc.title or doc.path.stem.replace("_", " ")
+        path_str = doc.url or str(doc.path)
+        doc_meta[doc_id] = DocMeta(doc_id=doc_id, path=path_str, title=title)
 
         if with_positions:
             pos_map: dict[str, list[int]] = defaultdict(list)
             total_tokens = 0
-            for pos, token in enumerate(tokenize(text)):
+            for pos, token in enumerate(tokenize(doc.text)):
                 pos_map[token].append(pos)
                 total_tokens += 1
             doc_lengths[doc_id] = total_tokens
@@ -186,7 +181,7 @@ def build_partial(
         else:
             counts: Counter[str] = Counter()
             total_tokens = 0
-            for token in tokenize(text):
+            for token in tokenize(doc.text):
                 counts[token] += 1
                 total_tokens += 1
             doc_lengths[doc_id] = total_tokens
@@ -197,6 +192,28 @@ def build_partial(
         postings=dict(postings_map),
         doc_lengths=doc_lengths,
         doc_meta=doc_meta,
+        with_positions=with_positions,
+    )
+
+
+def build_partial(
+    doc_paths: list[Path],
+    *,
+    start_doc_id: int = 0,
+    with_positions: bool = False,
+) -> PartialIndex:
+    docs: list[Document] = []
+    for path in doc_paths:
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            log.warning("Skipping undecodable file: %s", path)
+            continue
+        docs.append(Document(path=path, text=text, title=path.stem.replace("_", " ")))
+
+    return _build_partial_from_docs(
+        docs,
+        start_doc_id=start_doc_id,
         with_positions=with_positions,
     )
 
@@ -262,6 +279,15 @@ def build_index(
 ) -> Index:
     if workers < 1:
         raise ValueError("workers must be >= 1")
+
+    if root.is_file() and root.suffix.lower() == ".jsonl":
+        docs = list(iter_documents(root, limit=limit))
+        if not docs:
+            return Index(postings={}, doc_lengths={}, doc_meta={}, with_positions=with_positions)
+        part = _build_partial_from_docs(docs, start_doc_id=0, with_positions=with_positions)
+        if on_doc is not None:
+            on_doc(len(part.doc_meta))
+        return merge([part])
 
     paths = collect_document_paths(root, limit=limit)
     if not paths:

@@ -1,0 +1,33 @@
+{
+  "seed_url": "https://docs.python.org/3/",
+  "max_pages": 200,
+  "rows": [
+    {
+      "concurrency": 1,
+      "pages": 200,
+      "wall_s": 29.774,
+      "pages_per_s": 6.72,
+      "errors": 0,
+      "peak_rss_mb": 408.7,
+      "sample_failures": []
+    },
+    {
+      "concurrency": 5,
+      "pages": 200,
+      "wall_s": 18.29,
+      "pages_per_s": 10.93,
+      "errors": 0,
+      "peak_rss_mb": 269.1,
+      "sample_failures": []
+    },
+    {
+      "concurrency": 20,
+      "pages": 200,
+      "wall_s": 18.109,
+      "pages_per_s": 11.04,
+      "errors": 0,
+      "peak_rss_mb": 414.9,
+      "sample_failures": []
+    }
+  ]
+}
