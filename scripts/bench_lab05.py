@@ -116,8 +116,7 @@ def run_benchmark(corpus: Path, repeats: int = 3) -> list[dict[str, Any]]:
 
     for label, executor, workers in configs:
         samples = [
-            _measure_single_run(corpus, executor=executor, workers=workers)
-            for _ in range(repeats)
+            _measure_single_run(corpus, executor=executor, workers=workers) for _ in range(repeats)
         ]
         row = {
             "label": label,
@@ -219,9 +218,7 @@ def save_and_plot(new_rows: list[dict[str, Any]], extra: dict[str, Any]) -> None
         r["speedup"] = round(serial_wall / r["wall_s"], 2)
 
     merged_extra = {
-        k: v
-        for k, v in existing.items()
-        if k not in {"cpu_model", "logical_cores", "rows"}
+        k: v for k, v in existing.items() if k not in {"cpu_model", "logical_cores", "rows"}
     }
     merged_extra.update(extra)
 
