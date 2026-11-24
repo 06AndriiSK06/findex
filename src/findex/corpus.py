@@ -14,11 +14,17 @@ class Document:
     text: str
 
 
-def iter_documents(root: Path) -> Iterator[Document]:
+def collect_document_paths(root: Path, *, limit: int | None = None) -> list[Path]:
     if not root.exists():
         raise FileNotFoundError(f"Corpus path does not exist: {root}")
     files = [root] if root.is_file() else sorted(root.rglob("*.txt"))
-    for path in files:
+    if limit is not None:
+        return files[:limit]
+    return files
+
+
+def iter_documents(root: Path) -> Iterator[Document]:
+    for path in collect_document_paths(root):
         try:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:

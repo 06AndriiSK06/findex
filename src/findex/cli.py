@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Annotated
@@ -12,7 +13,7 @@ from rich.markup import escape
 from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 from rich.table import Table
 
-from findex.index import build_index
+from findex.index import ExecutorKind, build_index
 from findex.query import QuerySyntaxError
 from findex.ranking import ScorerName, make_scorer
 from findex.search import search as run_search
@@ -99,6 +100,18 @@ def index_cmd(
         int | None,
         typer.Option("--limit", help="Maximum number of documents to index"),
     ] = None,
+    workers: Annotated[
+        int,
+        typer.Option("--workers", "-w", min=1, help="Number of worker threads/processes"),
+    ] = max(1, min(8, os.cpu_count() or 4)),
+    executor: Annotated[
+        ExecutorKind,
+        typer.Option(
+            "--executor",
+            "-e",
+            help="Execution backend (serial, threads, processes)",
+        ),
+    ] = "processes",
 ) -> None:
     try:
         with Progress(
@@ -110,7 +123,10 @@ def index_cmd(
             console=_stderr(),
             transient=True,
         ) as progress:
-            task_id = progress.add_task("Indexing corpus...", total=limit)
+            task_id = progress.add_task(
+                f"Indexing ({executor}, workers={workers})...",
+                total=limit,
+            )
 
             def _advance(count: int) -> None:
                 progress.update(task_id, completed=count)
@@ -119,13 +135,16 @@ def index_cmd(
                 corpus,
                 limit=limit,
                 with_positions=positions,
+                workers=workers,
+                executor=executor,
                 on_doc=_advance,
             )
             save_array_binary(idx, out)
 
         _stdout().print(
             f"[bold green]Indexed[/bold green] {idx.num_docs} documents "
-            f"({len(idx)} terms) -> [cyan]{escape(str(out))}[/cyan]"
+            f"({len(idx)} terms) via [magenta]{executor}[/magenta] "
+            f"(workers={workers}) -> [cyan]{escape(str(out))}[/cyan]"
         )
     except (FileNotFoundError, OSError, ValueError) as exc:
         raise _fail(str(exc)) from None

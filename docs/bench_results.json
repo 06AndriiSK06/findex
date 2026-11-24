@@ -1,0 +1,182 @@
+{
+  "cpu_model": "AMD Ryzen 7 170 with Radeon Graphics",
+  "logical_cores": 16,
+  "rows": [
+    {
+      "label": "serial",
+      "executor": "serial",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 1,
+      "wall_s": 3.7276,
+      "cpu_s": 3.7188,
+      "peak_rss_mb": 302.35,
+      "merge_s": 0.1706,
+      "speedup": 1.0
+    },
+    {
+      "label": "threads",
+      "executor": "threads",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 2,
+      "wall_s": 4.2714,
+      "cpu_s": 4.2812,
+      "peak_rss_mb": 309.19,
+      "merge_s": 0.1703,
+      "speedup": 0.87
+    },
+    {
+      "label": "threads",
+      "executor": "threads",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 4,
+      "wall_s": 4.5322,
+      "cpu_s": 4.6719,
+      "peak_rss_mb": 316.49,
+      "merge_s": 0.2029,
+      "speedup": 0.82
+    },
+    {
+      "label": "threads",
+      "executor": "threads",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 8,
+      "wall_s": 4.6582,
+      "cpu_s": 4.8594,
+      "peak_rss_mb": 321.84,
+      "merge_s": 0.5428,
+      "speedup": 0.8
+    },
+    {
+      "label": "threads",
+      "executor": "threads",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 16,
+      "wall_s": 4.8355,
+      "cpu_s": 5.0781,
+      "peak_rss_mb": 328.83,
+      "merge_s": 0.2033,
+      "speedup": 0.77
+    },
+    {
+      "label": "processes",
+      "executor": "processes",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 2,
+      "wall_s": 6.2874,
+      "cpu_s": 2.6875,
+      "peak_rss_mb": 364.91,
+      "merge_s": 0.2033,
+      "speedup": 0.59
+    },
+    {
+      "label": "processes",
+      "executor": "processes",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 4,
+      "wall_s": 5.6056,
+      "cpu_s": 3.1094,
+      "peak_rss_mb": 354.18,
+      "merge_s": 0.2747,
+      "speedup": 0.66
+    },
+    {
+      "label": "processes",
+      "executor": "processes",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 8,
+      "wall_s": 4.8531,
+      "cpu_s": 3.25,
+      "peak_rss_mb": 351.72,
+      "merge_s": 0.2347,
+      "speedup": 0.77
+    },
+    {
+      "label": "processes",
+      "executor": "processes",
+      "python": "3.14",
+      "gil_enabled": true,
+      "workers": 16,
+      "wall_s": 5.2197,
+      "cpu_s": 3.5938,
+      "peak_rss_mb": 352.79,
+      "merge_s": 0.2784,
+      "speedup": 0.71
+    },
+    {
+      "label": "threads (3.13t, no-GIL)",
+      "executor": "threads",
+      "python": "3.13t",
+      "gil_enabled": false,
+      "workers": 2,
+      "wall_s": 23.2287,
+      "cpu_s": 43.4688,
+      "peak_rss_mb": 266.11,
+      "merge_s": 0.6138,
+      "speedup": 0.16
+    },
+    {
+      "label": "threads (3.13t, no-GIL)",
+      "executor": "threads",
+      "python": "3.13t",
+      "gil_enabled": false,
+      "workers": 4,
+      "wall_s": 30.0003,
+      "cpu_s": 95.9531,
+      "peak_rss_mb": 269.44,
+      "merge_s": 0.4906,
+      "speedup": 0.12
+    },
+    {
+      "label": "threads (3.13t, no-GIL)",
+      "executor": "threads",
+      "python": "3.13t",
+      "gil_enabled": false,
+      "workers": 8,
+      "wall_s": 60.4086,
+      "cpu_s": 286.9531,
+      "peak_rss_mb": 274.53,
+      "merge_s": 0.5502,
+      "speedup": 0.06
+    },
+    {
+      "label": "threads (3.13t, no-GIL)",
+      "executor": "threads",
+      "python": "3.13t",
+      "gil_enabled": false,
+      "workers": 16,
+      "wall_s": 103.3486,
+      "cpu_s": 494.7812,
+      "peak_rss_mb": 280.51,
+      "merge_s": 0.7593,
+      "speedup": 0.04
+    }
+  ],
+  "race_gil_True": {
+    "expected": 550167,
+    "unsafe_shared_counter": 550167,
+    "safe_locked_counter": 550167
+  },
+  "io_bench_gil_True": {
+    "io_serial_s": 0.0781,
+    "io_threads_8_s": 0.0574,
+    "io_speedup": 1.36
+  },
+  "race_gil_False": {
+    "expected": 550167,
+    "unsafe_shared_counter": 281477,
+    "safe_locked_counter": 550167
+  },
+  "io_bench_gil_False": {
+    "io_serial_s": 0.1078,
+    "io_threads_8_s": 0.0433,
+    "io_speedup": 2.49
+  }
+}
