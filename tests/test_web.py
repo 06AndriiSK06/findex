@@ -71,7 +71,7 @@ def test_health_unloaded_returns_503() -> None:
         load_on_startup=False,
     )
     with TestClient(app) as tc:
-        resp: httpx.Response = tc.get("/health")
+        resp: Any = tc.get("/health")
     assert resp.status_code == 503
     data = _json_dict(resp)
     assert data["status"] == "unavailable"
@@ -79,13 +79,13 @@ def test_health_unloaded_returns_503() -> None:
 
 
 def test_health_loaded_returns_200(client: TestClient) -> None:
-    resp: httpx.Response = client.get("/health")
+    resp: Any = client.get("/health")
     assert resp.status_code == 200
     assert _json_dict(resp) == {"status": "ok", "index_loaded": True, "num_docs": 5}
 
 
 def test_search_success_and_pagination(client: TestClient) -> None:
-    resp_p1: httpx.Response = client.get(
+    resp_p1: Any = client.get(
         "/search", params={"q": "python", "k": 2, "page": 1, "scorer": "bm25"}
     )
     assert resp_p1.status_code == 200
@@ -99,7 +99,7 @@ def test_search_success_and_pagination(client: TestClient) -> None:
     assert len(p1_results) == 2
     assert "[Python]" in str(p1_results[0]["snippet"])
 
-    resp_p2: httpx.Response = client.get(
+    resp_p2: Any = client.get(
         "/search", params={"q": "python", "k": 2, "page": 2, "scorer": "bm25"}
     )
     assert resp_p2.status_code == 200
@@ -110,9 +110,7 @@ def test_search_success_and_pagination(client: TestClient) -> None:
     p1_ids = {int(r["doc_id"]) for r in p1_results}
     assert int(p2_results[0]["doc_id"]) not in p1_ids
 
-    resp_tfidf: httpx.Response = client.get(
-        "/search", params={"q": "python", "k": 5, "scorer": "tfidf"}
-    )
+    resp_tfidf: Any = client.get("/search", params={"q": "python", "k": 5, "scorer": "tfidf"})
     assert resp_tfidf.status_code == 200
     assert _json_dict(resp_tfidf)["scorer"] == "tfidf"
 
@@ -130,26 +128,26 @@ def test_search_success_and_pagination(client: TestClient) -> None:
         {"q": "(unclosed"},
     ],
 )
-def test_search_validation_422(client: TestClient, params: dict[str, object]) -> None:
-    resp: httpx.Response = client.get("/search", params=params)
+def test_search_validation_422(client: TestClient, params: dict[str, Any]) -> None:
+    resp: Any = client.get("/search", params=params)
     assert resp.status_code == 422
 
 
 def test_get_document_success_and_404(client: TestClient) -> None:
-    ok_resp: httpx.Response = client.get("/docs/1")
+    ok_resp: Any = client.get("/docs/1")
     assert ok_resp.status_code == 200
     doc = _json_dict(ok_resp)
     assert doc["doc_id"] == 1
     assert doc["title"] == "FastAPI Overview"
     assert "Pydantic validation" in str(doc["content"])
 
-    missing_resp: httpx.Response = client.get("/docs/9999")
+    missing_resp: Any = client.get("/docs/9999")
     assert missing_resp.status_code == 404
     assert "not found" in str(_json_dict(missing_resp)["detail"]).lower()
 
 
 def test_stats_endpoint(client: TestClient) -> None:
-    resp: httpx.Response = client.get("/stats")
+    resp: Any = client.get("/stats")
     assert resp.status_code == 200
     data = _json_dict(resp)
     assert data["num_docs"] == 5
@@ -167,7 +165,7 @@ def test_unhandled_exception_returns_clean_500_with_request_id(fixture_index: In
         raise RuntimeError("secret internal failure details")
 
     with TestClient(app, raise_server_exceptions=False) as tc:
-        resp: httpx.Response = tc.get("/boom", headers={"X-Request-ID": "req-test-123"})
+        resp: Any = tc.get("/boom", headers={"X-Request-ID": "req-test-123"})
 
     assert resp.status_code == 500
     assert resp.headers["X-Request-ID"] == "req-test-123"
@@ -177,19 +175,19 @@ def test_unhandled_exception_returns_clean_500_with_request_id(fixture_index: In
 
 
 def test_web_ui_routes_and_static_css(client: TestClient) -> None:
-    home_resp: httpx.Response = client.get("/", params={"q": "python", "k": 2, "page": 1})
+    home_resp: Any = client.get("/", params={"q": "python", "k": 2, "page": 1})
     assert home_resp.status_code == 200
     home_html = str(home_resp.text)
     assert "<mark>Python</mark>" in home_html
     assert "Next →" in home_html
 
-    doc_resp: httpx.Response = client.get("/doc/0", params={"q": "python"})
+    doc_resp: Any = client.get("/doc/0", params={"q": "python"})
     assert doc_resp.status_code == 200
     doc_html = str(doc_resp.text)
     assert "Asyncio Guide" in doc_html
     assert "coroutines" in doc_html
 
-    css_resp: httpx.Response = client.get("/static/style.css")
+    css_resp: Any = client.get("/static/style.css")
     assert css_resp.status_code == 200
     assert ".result-card" in str(css_resp.text)
 

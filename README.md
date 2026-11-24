@@ -1,90 +1,115 @@
-# findex — Fast Local & Web Search Engine in Python
+findex v1.0.0 — README.md (текст для копіювання)
+Інструкція: виділіть весь моноширинний блок нижче, скопіюйте (Ctrl+C) та вставте безпосередньо у файл README.md.
 
-**Live Production Deployment (Render):** https://findex-a9ma.onrender.com
+# findex — Fast Keyword, Semantic & Hybrid Search Engine (`v1.0.0`)
 
-- **Web Search UI:** https://findex-a9ma.onrender.com/
-- **Interactive OpenAPI / Swagger Docs:** https://findex-a9ma.onrender.com/docs
-- **Health Check:** https://findex-a9ma.onrender.com/health
-- **Index Stats:** https://findex-a9ma.onrender.com/stats
+`findex` is a type-checked (`pyright --strict`) full-text and semantic search engine built from scratch in Python, featuring an async crawler, `int32` NumPy-vectorized BM25/TF-IDF scoring, embedding-based retrieval with Reciprocal Rank Fusion (RRF), a CLI, and a FastAPI web service.
 
-`findex` is a modular, type-checked (`pyright --strict`) command-line and web search engine written in Python 3.14. It supports polite asynchronous web crawling, streaming JSONL ingestion, multi-process/multi-threaded inverted index construction, binary index persistence, ranked retrieval (TF-IDF, BM25, boolean, and positional phrase queries), and a production FastAPI web service.
+- **Live Deployment (Render):** https://findex-a9ma.onrender.com ([Web UI](https://findex-a9ma.onrender.com/) · [Swagger / OpenAPI](https://findex-a9ma.onrender.com/docs) · [Health](https://findex-a9ma.onrender.com/health) · [Stats](https://findex-a9ma.onrender.com/stats))
+- **Demo Video (2–3 min walkthrough):** _Add screen-recording link before final submission_
+
+![findex search demo](docs/demo.gif)
+
+### Headline Numbers
+
+- **Corpus & Chunks:** 1,015 indexed documents (55,764 terms) in `index.bin`; 200-doc benchmark corpus split into 2,903 normalized 384-dim chunks (`all-MiniLM-L6-v2`).
+- **Search Latency:** **0.13 ms** median for single-term NumPy BM25 (`6.44x` speedup vs. scalar Lab 3 loop on 1,011 matched docs); **1.42 ms** end-to-end hybrid/semantic retrieval locally.
+- **Peak Speedups:** **6.44x** common-term scoring speedup via contiguous `int32` NumPy arrays and `np.argpartition` top-k.
 
 ---
 
-## Web Service & HTTP API (`findex.web`)
+## Architecture & Dataflow
 
-`findex` exposes an asynchronous REST API and server-rendered HTML search interface built with **FastAPI**, **Pydantic v2** (`pydantic-settings`), **Jinja2**, and **Uvicorn**.
-
-### Endpoints
-
-| Method | Path             | Description                                                                                                         |
-| :----- | :--------------- | :------------------------------------------------------------------------------------------------------------------ |
-| `GET`  | `/`              | Server-rendered HTML search UI with `<mark>` snippet highlighting and pagination                                    |
-| `GET`  | `/doc/{doc_id}`  | HTML document viewer with query context back-navigation                                                             |
-| `GET`  | `/search`        | JSON search endpoint (`q`, `k`, `page`, `scorer=bm25\|tfidf`)                                                       |
-| `GET`  | `/docs/{doc_id}` | Full JSON document payload (`doc_id`, `title`, `path`, `content`, `token_count`)                                    |
-| `GET`  | `/stats`         | Index statistics (`num_docs`, `vocab_size`, `total_tokens`, `avg_doc_length`, `index_size_bytes`, `uptime_seconds`) |
-| `GET`  | `/health`        | Readiness/liveness probe (`200 OK` when index is loaded, `503 Service Unavailable` otherwise)                       |
-| `GET`  | `/docs`          | Auto-generated OpenAPI 3.1 Swagger UI                                                                               |
-
-### Running Locally & via Docker
-
-```powershell
-# Start web server directly via CLI
-uv run findex serve --index data/index.bin --host 0.0.0.0 --port 8000
-
-# Or build and run multi-stage non-root Docker image
-docker build -t findex:0.7.0 .
-docker run -d -p 8000:8000 -e INDEX_PATH=/app/data/index.bin findex:0.7.0
+```mermaid
+flowchart LR
+    C["Corpus / Seed URLs<br/>(Lab 1, Lab 4)"] --> CR["Async Crawler<br/>findex.crawler (Lab 4)"]
+    CR --> TK["Tokenizer & Streamer<br/>findex.tokenize / corpus (Lab 1–2)"]
+    TK --> IDX["Inverted Index + int32 Arrays<br/>findex.index / store (Lab 2, 5, 8)"]
+    TK --> EMB["Chunker + Embeddings<br/>findex.semantic (Lab 8)"]
+    IDX --> SC["Vectorized BM25 / TF-IDF<br/>findex.ranking / search (Lab 3, 8)"]
+    EMB --> SEM["Cosine (E @ q) + Best Chunk<br/>findex.semantic (Lab 8)"]
+    SC --> RRF["Reciprocal Rank Fusion (k=60)<br/>findex.search / semantic (Lab 8)"]
+    SEM --> RRF
+    RRF --> API["FastAPI & Jinja2 UI / CLI<br/>findex.web / cli (Lab 6–8)"]
 ```
 
-### Concurrency Architecture & Load Benchmarks
+---
 
-- **Thread-Pool Offloading (`def` vs `async def`):** Query parsing, inverted-index intersection, and BM25/TF-IDF scoring are synchronous CPU/memory-bound operations. Route handlers (`/search`, `/docs/{doc_id}`, `/`, `/doc/{doc_id}`) are intentionally defined as plain `def` functions rather than `async def`. FastAPI/Starlette automatically dispatches `def` endpoints onto AnyIO's worker thread pool (`40` threads by default), preventing long searches from blocking the `asyncio` event loop while `/health` and `/stats` remain responsive.
-- **GIL & Multi-Worker Scaling:** Under Python's GIL, thread-pool offloading prevents event-loop stalls and overlaps any file I/O (reading document contents on `/docs/{doc_id}`), while pure-Python CPU parallelism scales across OS processes via `--workers N` (`uvicorn --workers 4`). Because the loaded `Index` is read-only after startup, each worker process holds its own in-memory snapshot with zero lock contention.
+## Consolidated Measurements (Labs 1–8)
 
-| Environment                                 | Workload                                                                 | Throughput                                    | p50 Latency | p95 Latency | p99 Latency |
-| :------------------------------------------ | :----------------------------------------------------------------------- | :-------------------------------------------- | :---------- | :---------- | :---------- |
-| **Localhost (Windows, 1 worker)**           | 200 reqs, concurrency 20 (`/search?q=python&k=10`)                       | **206.2 req/s**                               | `64.87 ms`  | `226.05 ms` | `324.24 ms` |
-| **Cloud Production (Render Free, US-West)** | 100 reqs, concurrency 10 (`/search?q=python&k=10`, remote RTT from Kyiv) | **35.5 req/s** (`0.63 ms` server search time) | `234.01 ms` | `338.02 ms` | `714.48 ms` |
+### Profiling & Top-3 Hotspots (Before Optimization — Lab 8 M1)
+
+Flame graphs are saved in `docs/profile_index.svg` and `docs/profile_search.svg`.
+
+| Rank  | Function / Stage                                    | Baseline Time                      | Breakdown (Python vs. Native) | Optimization Applied                                                                             |
+| :---- | :-------------------------------------------------- | :--------------------------------- | :---------------------------- | :----------------------------------------------------------------------------------------------- |
+| **1** | `index.py:intersect_merge`                          | `0.178 s` (300 3-term queries)     | ~90% Python / ~10% Native     | Contiguous `int32` posting arrays (`postings_doc_ids`, `postings_tfs`) and NumPy set operations. |
+| **2** | `ranking.py:BM25.score`                             | `0.131 s` (72,000 calls)           | ~88% Python / ~12% Native     | Vectorized `score_array` (`doc_lengths_arr[doc_ids]`) + `np.argpartition` / `lexsort` top-k.     |
+| **3** | `index.py:_build_partial_from_docs` & `tokenize.py` | `0.638 s` (200 docs, 15,147 terms) | ~65% Python / ~35% Native     | Batch `int32` array construction on index merge and binary deserialization.                      |
+
+### Scalar (Lab 3) vs. NumPy Scorer Speedup — 1,015 Docs (Lab 8 M2)
+
+| Query        | Term / Text             | Docs matched | Lab 3 scorer (ms) | NumPy scorer (ms) |   Speedup |
+| :----------- | :---------------------- | -----------: | ----------------: | ----------------: | --------: |
+| common term  | `the`                   |        1,011 |            0.8400 |            0.1304 | **6.44x** |
+| rare term    | `deconstruct`           |            1 |            0.0110 |            0.0362 | **0.30x** |
+| 3-term query | `python async function` |           80 |            0.4091 |            0.2308 | **1.77x** |
+
+- **Why `6.44x` on `the` and `0.30x` on `deconstruct`:** Large posting lists amortize NumPy array creation and C-loop dispatch across 1,011 items, whereas a 1-element posting list pays fixed NumPy setup overhead (`np.zeros`, `astype`) that exceeds a single scalar Python formula.
+
+### Retrieval Evaluation: Precision@5 Across 15 Queries (Lab 8 M3)
+
+Evaluated on 10 exact keyword queries (`Q01–Q10`) and 5 paraphrase queries without shared surface words (`Q11–Q15`) using `all-MiniLM-L6-v2` and RRF (`k = 60`).
+
+| Query Group           | Queries                | Keyword (BM25) P@5 | Semantic P@5 | Hybrid (RRF) P@5 |
+| :-------------------- | :--------------------- | -----------------: | -----------: | ---------------: |
+| Exact keyword queries | `Q01–Q10` (10 queries) |           **1.00** |     **0.36** |         **0.76** |
+| Paraphrase queries    | `Q11–Q15` (5 queries)  |           **0.08** |     **0.16** |         **0.12** |
+| **Overall**           | **All 15 queries**     |           **0.69** |     **0.29** |         **0.55** |
+
+- **Interpretation:** Exact keyword matching (`BM25`) excels on short exact module names (`1.00`), while semantic search surfaces conceptual matches on paraphrases (`0.16` vs. `0.08`). Hybrid RRF (`k = 60`) combines both signals without score-scale tuning.
+
+### HTTP API & Web Load Benchmarks (Lab 7)
+
+| Environment                        | Workload                                           |                        Throughput | p50 Latency | p95 Latency | p99 Latency |
+| :--------------------------------- | :------------------------------------------------- | --------------------------------: | ----------: | ----------: | ----------: |
+| **Localhost (Windows, 1 worker)**  | 200 reqs, concurrency 20 (`/search?q=python&k=10`) |                   **206.2 req/s** |  `64.87 ms` | `226.05 ms` | `324.24 ms` |
+| **Cloud Production (Render Free)** | 100 reqs, concurrency 10 (remote RTT from Kyiv)    | **35.5 req/s** (`0.63 ms` search) | `234.01 ms` | `338.02 ms` | `714.48 ms` |
 
 ---
 
-## Features & Architecture
-
-- **Polite Async Web Crawler (`findex.crawler`):**
-  - Built on `asyncio` (`TaskGroup`, bounded `Queue`, `Semaphore`) and `httpx.AsyncClient`.
-  - Strict `robots.txt` compliance (`urllib.robotparser`) with per-origin caching and `Crawl-delay` support.
-  - Per-host concurrency limits and request pacing (`_HostRateLimiter`).
-  - URL canonicalization (scheme/host normalization, fragment stripping, query parameter sorting, domain allowlisting).
-  - Exponential backoff with jitter and `Retry-After` handling on transient HTTP `429`/`503`/network errors.
-  - Streaming JSONL output (`url`, `title`, `text`, `fetched_at`) and structured per-URL `crawl.log`.
-- **Corpus & Tokenization (`findex.corpus`, `findex.tokenize`):**
-  - Streaming document reader (`iter_documents`) supporting both local directory trees (`.txt`, `.md`) and crawled `.jsonl` files without loading entire datasets into RAM.
-  - Unicode-aware regex tokenization with lowercasing and stop-word filtering.
-- **Inverted Index & Parallel Indexing (`findex.index`, `findex.store`):**
-  - Inverted index with term frequencies (`tf`) and optional positional postings (`positions`).
-  - Map-reduce style parallel index building (`serial`, `threads`, `processes`) with deterministic partial index merging.
-  - Compact binary serialization (`array('I')` / `struct` framing) for fast load and query times.
-- **Query Engine & Ranking (`findex.query`, `findex.ranking`, `findex.search`):**
-  - Boolean (`AND`, `OR`, `NOT`), phrase (`"exact phrase"`), and free-text queries.
-  - Okapi BM25 and TF-IDF scoring with document metadata and snippets.
-- **CLI & Web Server (`findex.cli`, `findex.web`):**
-  - Built with `typer` and `rich` live progress/status tables (`findex crawl`, `findex index`, `findex search`, `findex stats`, `findex serve`).
-
----
-
-## Installation & Development
-
-Requires **Python 3.14+** and [`uv`](https://docs.astral.sh/uv/).
+## CLI, API & Web Usage
 
 ```powershell
-# Install dependencies
-uv sync
+# 1. Build binary index
+uv run findex index data/lab06_bench/crawl_c20.jsonl --out data/index.bin --positions
 
-# Run linter, formatter, strict type checker, and test suite
+# 2. Generate chunked L2-normalized embeddings (.emb.npy + .emb_docs.npy)
+uv run findex embed data/index.bin --corpus data/lab06_bench/crawl_c20.jsonl --model all-MiniLM-L6-v2
+
+# 3. Search in keyword, semantic, or hybrid mode
+uv run findex search data/index.bin "running tasks concurrently without blocking" --mode hybrid --k 5
+
+# 4. Run web server (UI at /, API at /search?q=...&mode=keyword|semantic|hybrid)
+uv run findex serve --index data/index.bin --port 8000
+```
+
+---
+
+## Limitations & Next Steps
+
+- **Scale beyond ~10⁶ chunks:** Brute-force matrix-vector search (`E @ q`) is linear in chunk count; past hundreds of thousands of chunks, swap in an **HNSW** index (`faiss` or `hnswlib`) and tune `efSearch` against recall@10.
+- **Full re-embedding vs. incremental updates:** `findex embed` currently rebuilds chunk vectors for the index rather than diffing unchanged chunks or running background jobs from the FastAPI service.
+- **Memory footprint on free hosting:** Loading large neural embedding models (`torch` / `sentence-transformers`) increases RAM usage; keep lightweight deployments focused on fast `int32` NumPy inverted-index serving unless embedding files are precomputed and memory budget allows.
+- **Future RAG layer:** Layering an LLM synthesizer with source citations on top of `hybrid_search` (`findex ask`) is a natural next step.
+
+---
+
+## Development & Verification
+
+```powershell
 uv run ruff check .
 uv run ruff format --check .
 uv run pyright
-uv run pytest
+uv run pytest -m "not slow" --benchmark-disable
 ```

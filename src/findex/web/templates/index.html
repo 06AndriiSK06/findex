@@ -25,6 +25,11 @@
           autofocus
           required
         />
+        <select name="mode" aria-label="Search mode">
+          <option value="keyword" {% if mode == "keyword" %}selected{% endif %}>Keyword</option>
+          <option value="semantic" {% if mode == "semantic" %}selected{% endif %}>Semantic</option>
+          <option value="hybrid" {% if mode == "hybrid" %}selected{% endif %}>Hybrid (RRF)</option>
+        </select>
         <select name="scorer" aria-label="Ranking algorithm">
           <option value="bm25" {% if scorer == "bm25" %}selected{% endif %}>BM25</option>
           <option value="tfidf" {% if scorer == "tfidf" %}selected{% endif %}>TF-IDF</option>
@@ -41,9 +46,7 @@
       <p class="summary">
         Found <strong>{{ search_res.total }}</strong> result{{ "" if search_res.total == 1 else "s" }}
         in <strong>{{ "%.2f"|format(search_res.took_ms) }} ms</strong>
-        {% if search_res.total_pages > 0 %}
-        (page {{ search_res.page }} of {{ search_res.total_pages }})
-        {% endif %}
+        (mode: <strong>{{ mode }}</strong>{% if search_res.total_pages > 0 %}, page {{ search_res.page }} of {{ search_res.total_pages }}{% endif %})
       </p>
 
       {% if search_res.results %}
@@ -53,7 +56,10 @@
             <a class="result-title" href="/doc/{{ item.doc_id }}?q={{ query|urlencode }}">
               {{ item.title }}
             </a>
-            <span class="score-badge">{{ scorer|upper }} {{ "%.4f"|format(item.score) }}</span>
+            <span class="score-badge">
+              {% if mode == "keyword" %}{{ scorer|upper }}{% else %}{{ mode|upper }}{% endif %}
+              {{ "%.4f"|format(item.score) }}
+            </span>
           </div>
           {% if item.path %}
           <div class="result-path">{{ item.path }}</div>
@@ -68,7 +74,7 @@
         <nav class="pagination" aria-label="Search result pages">
           <div>
             {% if search_res.page > 1 %}
-            <a href="/?q={{ query|urlencode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page - 1 }}">
+            <a href="/?q={{ query|urlencode }}&amp;mode={{ mode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page - 1 }}">
               ← Previous
             </a>
             {% endif %}
@@ -76,7 +82,7 @@
           <span>Page {{ search_res.page }} / {{ search_res.total_pages }}</span>
           <div>
             {% if search_res.page < search_res.total_pages %}
-            <a href="/?q={{ query|urlencode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page + 1 }}">
+            <a href="/?q={{ query|urlencode }}&amp;mode={{ mode }}&amp;scorer={{ scorer }}&amp;k={{ k }}&amp;page={{ search_res.page + 1 }}">
               Next →
             </a>
             {% endif %}

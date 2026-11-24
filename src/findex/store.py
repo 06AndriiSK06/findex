@@ -10,7 +10,9 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import TypedDict
 
-from findex.index import DocMeta, Index, Posting
+import numpy as np
+
+from findex.index import DocMeta, Index, Int32Array, Posting
 from findex.timing import timed
 
 log = logging.getLogger(__name__)
@@ -48,17 +50,19 @@ def save_array_binary(index: Index, path: Path) -> None:
     payload_chunks: list[bytes] = []
     offset = 0
 
-    for term, plist in index.postings.items():
-        count = len(plist)
-        doc_ids = array("I", (p.doc_id for p in plist))
-        tfs = array("I", (p.tf for p in plist))
+    for term, doc_ids_arr in index.postings_doc_ids.items():
+        count = int(doc_ids_arr.size)
+        tfs_arr = index.postings_tfs[term]
+        doc_bytes = doc_ids_arr.astype("<u4", copy=False).tobytes()
+        tf_bytes = tfs_arr.astype("<u4", copy=False).tobytes()
         if index.with_positions:
+            plist = index.postings[term]
             flat_pos = array("I")
             for p in plist:
                 flat_pos.extend(p.positions)
-            raw = doc_ids.tobytes() + tfs.tobytes() + flat_pos.tobytes()
+            raw = doc_bytes + tf_bytes + flat_pos.tobytes()
         else:
-            raw = doc_ids.tobytes() + tfs.tobytes()
+            raw = doc_bytes + tf_bytes
 
         payload_chunks.append(raw)
         terms_meta[term] = [offset, count]
@@ -99,22 +103,26 @@ def load_array_binary(path: Path) -> Index:
     }
 
     postings: dict[str, list[Posting]] = {}
+    postings_doc_ids: dict[str, Int32Array] = {}
+    postings_tfs: dict[str, Int32Array] = {}
+
     for term, meta_pair in header["terms"].items():
         offset, count = meta_pair[0], meta_pair[1]
         half = count * 4
-        doc_ids = array("I")
-        tfs = array("I")
-        doc_ids.frombytes(payload[offset : offset + half])
-        tfs.frombytes(payload[offset + half : offset + 2 * half])
+        doc_ids_np = np.frombuffer(payload, dtype=np.int32, count=count, offset=offset).copy()
+        tfs_np = np.frombuffer(payload, dtype=np.int32, count=count, offset=offset + half).copy()
+        postings_doc_ids[term] = doc_ids_np
+        postings_tfs[term] = tfs_np
 
         if with_positions:
-            total_pos = sum(tfs)
+            total_pos = int(tfs_np.sum())
             pos_start = offset + 2 * half
-            flat_pos = array("I")
-            flat_pos.frombytes(payload[pos_start : pos_start + total_pos * 4])
+            flat_pos = np.frombuffer(
+                payload, dtype=np.int32, count=total_pos, offset=pos_start
+            ).tolist()
             plist: list[Posting] = []
             cursor = 0
-            for d, tf in zip(doc_ids, tfs, strict=True):
+            for d, tf in zip(doc_ids_np.tolist(), tfs_np.tolist(), strict=True):
                 plist.append(
                     Posting(
                         doc_id=d,
@@ -125,13 +133,18 @@ def load_array_binary(path: Path) -> Index:
                 cursor += tf
             postings[term] = plist
         else:
-            postings[term] = [Posting(doc_id=d, tf=t) for d, t in zip(doc_ids, tfs, strict=True)]
+            postings[term] = [
+                Posting(doc_id=d, tf=t)
+                for d, t in zip(doc_ids_np.tolist(), tfs_np.tolist(), strict=True)
+            ]
 
     return Index(
         postings=postings,
         doc_lengths=doc_lengths,
         doc_meta=doc_meta,
         with_positions=with_positions,
+        postings_doc_ids=postings_doc_ids,
+        postings_tfs=postings_tfs,
     )
 
 

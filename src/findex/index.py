@@ -9,7 +9,10 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_compl
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
+
+import numpy as np
+import numpy.typing as npt
 
 from findex.corpus import Document, collect_document_paths, iter_documents
 from findex.timing import timed
@@ -18,6 +21,7 @@ from findex.tokenize import tokenize
 log = logging.getLogger(__name__)
 
 ExecutorKind = Literal["serial", "threads", "processes"]
+Int32Array = npt.NDArray[np.int32]
 
 
 @dataclass(frozen=True, slots=True)
@@ -51,6 +55,9 @@ class Index(Mapping[str, list[Posting]]):
         *,
         with_positions: bool = False,
         merge_seconds: float = 0.0,
+        postings_doc_ids: dict[str, Int32Array] | None = None,
+        postings_tfs: dict[str, Int32Array] | None = None,
+        doc_lengths_arr: Int32Array | None = None,
     ) -> None:
         self._postings = postings
         self._doc_lengths = doc_lengths
@@ -59,9 +66,46 @@ class Index(Mapping[str, list[Posting]]):
         self.merge_seconds = merge_seconds
         self.closed = False
 
+        if doc_lengths_arr is not None:
+            self._doc_lengths_arr = doc_lengths_arr
+        elif doc_lengths:
+            max_id = max(doc_lengths.keys())
+            arr = np.zeros(max_id + 1, dtype=np.int32)
+            for did, dlen in doc_lengths.items():
+                arr[did] = dlen
+            self._doc_lengths_arr = arr
+        else:
+            self._doc_lengths_arr = np.empty(0, dtype=np.int32)
+
+        if postings_doc_ids is not None and postings_tfs is not None:
+            self._postings_doc_ids = postings_doc_ids
+            self._postings_tfs = postings_tfs
+        else:
+            p_ids: dict[str, Int32Array] = {}
+            p_tfs: dict[str, Int32Array] = {}
+            for term, plist in postings.items():
+                p_ids[term] = np.fromiter(
+                    (p.doc_id for p in plist), dtype=np.int32, count=len(plist)
+                )
+                p_tfs[term] = np.fromiter((p.tf for p in plist), dtype=np.int32, count=len(plist))
+            self._postings_doc_ids = p_ids
+            self._postings_tfs = p_tfs
+
     @property
     def postings(self) -> dict[str, list[Posting]]:
         return self._postings
+
+    @property
+    def postings_doc_ids(self) -> dict[str, Int32Array]:
+        return self._postings_doc_ids
+
+    @property
+    def postings_tfs(self) -> dict[str, Int32Array]:
+        return self._postings_tfs
+
+    @property
+    def doc_lengths_arr(self) -> Int32Array:
+        return self._doc_lengths_arr
 
     @property
     def doc_lengths(self) -> dict[int, int]:
@@ -77,76 +121,60 @@ class Index(Mapping[str, list[Posting]]):
 
     @cached_property
     def avg_doc_length(self) -> float:
-        if not self._doc_lengths:
+        if self._doc_lengths_arr.size == 0 or self.num_docs == 0:
             return 0.0
-        return sum(self._doc_lengths.values()) / self.num_docs
+        return float(self._doc_lengths_arr.sum()) / self.num_docs
 
     def doc_length(self, doc_id: int) -> int:
         return self._doc_lengths[doc_id]
 
     def df(self, term: str) -> int:
-        plist = self._postings.get(term)
-        return len(plist) if plist is not None else 0
+        arr = self._postings_doc_ids.get(term)
+        return int(arr.size) if arr is not None else 0
 
     def close(self) -> None:
         self.closed = True
 
     def __len__(self) -> int:
-        return len(self._postings)
+        return len(self._postings_doc_ids)
 
     def __contains__(self, term: object) -> bool:
-        return term in self._postings
+        return term in self._postings_doc_ids
 
     def __getitem__(self, term: str) -> list[Posting]:
         return self._postings[term]
 
     def __iter__(self) -> Iterator[str]:
-        return iter(self._postings)
+        return iter(self._postings_doc_ids)
 
     def __repr__(self) -> str:
         return f"Index(terms={len(self):_}, docs={self.num_docs:_})"
 
 
+def _to_int32_array(values: Iterable[int]) -> Int32Array:
+    if isinstance(values, np.ndarray):
+        return cast(Int32Array, np.fromiter(values.tolist(), dtype=np.int32))
+    return np.fromiter(values, dtype=np.int32)
+
+
 def intersect_merge(a: Iterable[int], b: Iterable[int]) -> list[int]:
-    list_a = list(a)
-    list_b = list(b)
-    result: list[int] = []
-    i = 0
-    j = 0
-    while i < len(list_a) and j < len(list_b):
-        if list_a[i] == list_b[j]:
-            result.append(list_a[i])
-            i += 1
-            j += 1
-        elif list_a[i] < list_b[j]:
-            i += 1
-        else:
-            j += 1
-    return result
+    arr_a = _to_int32_array(a)
+    arr_b = _to_int32_array(b)
+    if arr_a.size == 0 or arr_b.size == 0:
+        return []
+    merged: Int32Array = np.intersect1d(arr_a, arr_b, assume_unique=True)
+    return [int(x) for x in merged.tolist()]
 
 
 def union_merge(a: Iterable[int], b: Iterable[int]) -> list[int]:
-    list_a = list(a)
-    list_b = list(b)
-    result: list[int] = []
-    i = 0
-    j = 0
-    while i < len(list_a) and j < len(list_b):
-        if list_a[i] == list_b[j]:
-            result.append(list_a[i])
-            i += 1
-            j += 1
-        elif list_a[i] < list_b[j]:
-            result.append(list_a[i])
-            i += 1
-        else:
-            result.append(list_b[j])
-            j += 1
-    if i < len(list_a):
-        result.extend(list_a[i:])
-    if j < len(list_b):
-        result.extend(list_b[j:])
-    return result
+    arr_a = _to_int32_array(a)
+    arr_b = _to_int32_array(b)
+    if arr_a.size == 0:
+        return [int(x) for x in arr_b.tolist()]
+    if arr_b.size == 0:
+        return [int(x) for x in arr_a.tolist()]
+    merged: Int32Array = np.union1d(arr_a, arr_b)
+    return [int(x) for x in merged.tolist()]
 
 
 def _build_partial_from_docs(
@@ -159,34 +187,25 @@ def _build_partial_from_docs(
     doc_lengths: dict[int, int] = {}
     doc_meta: dict[int, DocMeta] = {}
 
-    next_id = start_doc_id
-    for doc in docs:
-        doc_id = next_id
-        next_id += 1
-        title = doc.title or doc.path.stem.replace("_", " ")
-        path_str = doc.url or str(doc.path)
-        doc_meta[doc_id] = DocMeta(doc_id=doc_id, path=path_str, title=title)
+    for offset, doc in enumerate(docs):
+        doc_id = start_doc_id + offset
+        tokens = list(tokenize(doc.text))
+        doc_lengths[doc_id] = len(tokens)
+        title = doc.title if doc.title is not None else doc.path.stem.replace("_", " ")
+        doc_meta[doc_id] = DocMeta(doc_id=doc_id, path=str(doc.path), title=title)
 
         if with_positions:
-            pos_map: dict[str, list[int]] = defaultdict(list)
-            total_tokens = 0
-            for pos, token in enumerate(tokenize(doc.text)):
-                pos_map[token].append(pos)
-                total_tokens += 1
-            doc_lengths[doc_id] = total_tokens
-            for term, positions in pos_map.items():
-                postings_map[term].append(
+            pos_by_term: dict[str, list[int]] = defaultdict(list)
+            for pos, tok in enumerate(tokens):
+                pos_by_term[tok].append(pos)
+            for tok, positions in pos_by_term.items():
+                postings_map[tok].append(
                     Posting(doc_id=doc_id, tf=len(positions), positions=tuple(positions))
                 )
         else:
-            counts: Counter[str] = Counter()
-            total_tokens = 0
-            for token in tokenize(doc.text):
-                counts[token] += 1
-                total_tokens += 1
-            doc_lengths[doc_id] = total_tokens
-            for term, tf in counts.items():
-                postings_map[term].append(Posting(doc_id=doc_id, tf=tf))
+            counts = Counter(tokens)
+            for tok, tf in counts.items():
+                postings_map[tok].append(Posting(doc_id=doc_id, tf=tf))
 
     return PartialIndex(
         postings=dict(postings_map),
@@ -242,6 +261,13 @@ def merge(partials: Iterable[PartialIndex]) -> Index:
     sorted_postings = dict(sorted(merged_postings.items()))
     sorted_lengths = dict(sorted(merged_lengths.items()))
     sorted_meta = dict(sorted(merged_meta.items()))
+
+    p_ids: dict[str, Int32Array] = {}
+    p_tfs: dict[str, Int32Array] = {}
+    for term, plist in sorted_postings.items():
+        p_ids[term] = np.fromiter((p.doc_id for p in plist), dtype=np.int32, count=len(plist))
+        p_tfs[term] = np.fromiter((p.tf for p in plist), dtype=np.int32, count=len(plist))
+
     merge_elapsed = time.perf_counter() - t0
 
     return Index(
@@ -250,6 +276,8 @@ def merge(partials: Iterable[PartialIndex]) -> Index:
         doc_meta=sorted_meta,
         with_positions=with_positions,
         merge_seconds=merge_elapsed,
+        postings_doc_ids=p_ids,
+        postings_tfs=p_tfs,
     )
 
 

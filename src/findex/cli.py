@@ -20,12 +20,21 @@ from findex.index import ExecutorKind, build_index
 from findex.query import QuerySyntaxError
 from findex.ranking import ScorerName, make_scorer
 from findex.search import search as run_search
+from findex.semantic import (
+    SearchMode,
+    SentenceTransformerEncoder,
+    build_semantic_index,
+    hybrid_search,
+    load_semantic_index,
+    save_semantic_index,
+    semantic_search,
+)
 from findex.stats import compute_stats
 from findex.store import open_index, save_array_binary
 
 app = typer.Typer(
     name="findex",
-    help="Full-text search engine CLI.",
+    help="Full-text and semantic search engine CLI.",
     no_args_is_help=True,
     add_completion=False,
 )
@@ -240,6 +249,65 @@ def index_cmd(
         raise _fail(str(exc)) from None
 
 
+@app.command("embed")
+def embed_cmd(
+    index_path: Annotated[Path, typer.Argument(help="Path to saved binary index file")],
+    model: Annotated[
+        str,
+        typer.Option("--model", "-m", help="Sentence-Transformers model name"),
+    ] = "all-MiniLM-L6-v2",
+    corpus: Annotated[
+        Path | None,
+        typer.Option("--corpus", "-c", help="Optional original corpus path (.jsonl or dir)"),
+    ] = None,
+    chunk_words: Annotated[
+        int,
+        typer.Option("--chunk-words", min=32, help="Words per text chunk"),
+    ] = 220,
+    batch_size: Annotated[
+        int,
+        typer.Option("--batch-size", min=1, help="Embedding batch size"),
+    ] = 32,
+) -> None:
+    try:
+        with (
+            open_index(index_path) as idx,
+            Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                BarColumn(),
+                TextColumn("{task.completed}/{task.total} chunks"),
+                TimeElapsedColumn(),
+                console=_stderr(),
+                transient=True,
+            ) as progress,
+        ):
+            encoder = SentenceTransformerEncoder(model)
+            task_id = progress.add_task(f"Embedding chunks ({model})...", total=None)
+
+            def _on_batch(done: int, total: int) -> None:
+                progress.update(task_id, completed=done, total=total)
+
+            sem_idx = build_semantic_index(
+                idx,
+                encoder=encoder,
+                model_name=model,
+                corpus_path=corpus,
+                chunk_words=chunk_words,
+                batch_size=batch_size,
+                on_batch=_on_batch,
+            )
+            emb_path, docs_path = save_semantic_index(sem_idx, index_path)
+
+        _stdout().print(
+            f"[bold green]Embedded[/bold green] {sem_idx.num_chunks} chunks "
+            f"(dim={sem_idx.dim}) using [magenta]{escape(model)}[/magenta] "
+            f"-> [cyan]{escape(str(emb_path))}[/cyan], [cyan]{escape(str(docs_path))}[/cyan]"
+        )
+    except (FileNotFoundError, OSError, ValueError, ImportError) as exc:
+        raise _fail(str(exc)) from None
+
+
 @app.command("search")
 def search_cmd(
     index_path: Annotated[Path, typer.Argument(help="Path to saved index file")],
@@ -249,6 +317,10 @@ def search_cmd(
         ScorerName,
         typer.Option("--scorer", "-s", help="Ranking scorer (bm25 or tfidf)"),
     ] = "bm25",
+    mode: Annotated[
+        SearchMode,
+        typer.Option("--mode", "-m", help="Retrieval mode (keyword, semantic, or hybrid)"),
+    ] = "keyword",
     as_json: Annotated[
         bool,
         typer.Option("--json", help="Emit JSON lines to stdout for piping"),
@@ -256,13 +328,41 @@ def search_cmd(
 ) -> None:
     try:
         with open_index(index_path) as idx:
-            results = run_search(
-                idx,
-                query,
-                scorer=make_scorer(scorer),
-                k=k,
-                with_snippets=True,
-            )
+            if mode == "keyword":
+                results = run_search(
+                    idx,
+                    query,
+                    scorer=make_scorer(scorer),
+                    k=k,
+                    with_snippets=True,
+                )
+            else:
+                sem_idx = load_semantic_index(index_path)
+                if sem_idx is None:
+                    raise ValueError(
+                        f"Semantic embeddings not found for {index_path}. "
+                        f"Run `findex embed {index_path}` first."
+                    )
+                encoder = SentenceTransformerEncoder(sem_idx.model_name)
+                if mode == "semantic":
+                    results = semantic_search(
+                        idx,
+                        sem_idx,
+                        query,
+                        encoder=encoder,
+                        k=k,
+                        with_snippets=True,
+                    )
+                else:
+                    results = hybrid_search(
+                        idx,
+                        sem_idx,
+                        query,
+                        encoder=encoder,
+                        scorer=make_scorer(scorer),
+                        k=k,
+                        with_snippets=True,
+                    )
     except (FileNotFoundError, QuerySyntaxError, ValueError, TypeError, OSError) as exc:
         raise _fail(str(exc)) from None
 
@@ -273,6 +373,7 @@ def search_cmd(
                 "score": round(res.score, 6),
                 "title": res.title,
                 "snippet": res.snippet,
+                "mode": mode,
             }
             sys.stdout.write(json.dumps(payload, ensure_ascii=False) + "\n")
         sys.stdout.flush()
@@ -282,7 +383,8 @@ def search_cmd(
         _stdout().print(f"[yellow]No documents matched query:[/yellow] {escape(repr(query))}")
         return
 
-    table = Table(title=f"Search Results ({scorer.upper()}) — {escape(repr(query))}")
+    label = mode.upper() if mode != "keyword" else scorer.upper()
+    table = Table(title=f"Search Results ({label}) — {escape(repr(query))}")
     table.add_column("#", justify="right", style="dim", no_wrap=True)
     table.add_column("Score", justify="right", style="cyan", no_wrap=True)
     table.add_column("Title", style="bold green")

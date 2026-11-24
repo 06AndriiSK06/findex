@@ -14,6 +14,7 @@ class SearchResultItem(BaseModel):
 class SearchResponse(BaseModel):
     query: str
     scorer: str
+    mode: str = "keyword"
     page: int = Field(ge=1)
     k: int = Field(ge=1)
     total: int = Field(ge=0)

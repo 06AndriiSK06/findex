@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -33,4 +33,7 @@ jobs:
         run: uv run pyright
 
       - name: Run pytest with coverage
-        run: uv run pytest --cov=findex --cov-report=term-missing
+        run: uv run pytest -m "not slow" --benchmark-disable --cov=findex --cov-report=term-missing
+
+      - name: Run pytest-benchmark suite
+        run: uv run pytest --benchmark-only --benchmark-min-rounds=5

@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="312"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style type="text/css">
+    .func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+</style>
+<svg class="func_g" x="0.0" y="120" width="1294.357780046177" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 107.95% (1 1 0.0027128 0.7002702000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="0.0860155648093368" y="96" width="1289.250860232723" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 107.52% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="0.21994087431892786" y="72" width="37.12450305971854" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\corpus.py:29:iter_documents 3.18% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">iter_documents</text>
+</g></svg>
+<svg class="func_g" x="0.21994087431892786" y="48" width="2.2438041817129672" height="23"><g>
+    <title>&lt;frozen codecs&gt;:322:decode 0.27% (444 444 0.0002021 0.0017536000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">decode</text>
+</g></svg>
+<svg class="func_g" x="0.21994087431892786" y="24" width="1.8699601892835704" height="23"><g>
+    <title>~:0:&lt;built-in method _codecs.utf_8_decode&gt; 0.24% (444 444 0.0015515000000000001 0.0015515000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method _codecs.utf_8_decode&gt;</text>
+</g></svg>
+<svg class="func_g" x="3.463745056031895" y="48" width="11.674994658710895" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py:304:loads 1.06% (200 200 0.0001522 0.006852100000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">loads</text>
+</g></svg>
+<svg class="func_g" x="3.463745056031895" y="24" width="11.303185443083438" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:340:decode 1.03% (200 200 0.0002422 0.0066511)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">decode</text>
+</g></svg>
+<svg class="func_g" x="3.463745056031895" y="0" width="10.316318694141907" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:351:raw_decode 0.94% (200 200 0.0061176 0.0061176)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">raw_decode</text>
+</g></svg>
+<svg class="func_g" x="17.31965017870581" y="48" width="1" height="23"><g>
+    <title>~:0:&lt;method 'strip' of 'str' objects&gt; 0.16% (200 200 0.0010417 0.0010417)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'strip' of 'str' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="38.34444393403747" y="72" width="1176.0225604336417" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 98.09% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="39.229016903754136" y="48" width="10.165930190507519" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\collections\__init__.py:616:__missing__ 0.93% (118994 118994 0.0060363000000000005 0.0060363000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">__missing__</text>
+</g></svg>
+<svg class="func_g" x="50.39494709426166" y="48" width="606.7143937952872" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 50.64% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="50.39494709426166" y="24" width="16.611548159929757" height="23"><g>
+    <title>~:0:&lt;built-in method unicodedata.normalize&gt; 1.47% (200 200 0.009520800000000001 0.009520800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method unicodedata.normalize&gt;</text>
+</g></svg>
+<svg class="func_g" x="68.0064952541914" y="24" width="44.00778302126742" height="23"><g>
+    <title>~:0:&lt;method 'casefold' of 'str' objects&gt; 3.75% (200 200 0.0243312 0.0243312)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'casefold' of 'str' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="113.36037531149813" y="24" width="134.7843555877283" height="23"><g>
+    <title>~:0:&lt;method 'group' of 're.Match' objects&gt; 11.32% (520484 520484 0.073405 0.073405)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'group' of 're.Match' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="658.109340889549" y="48" width="24.02738470445946" height="23"><g>
+    <title>~:0:&lt;method 'append' of 'list' objects&gt; 2.09% (118994 118994 0.013529800000000002 0.013529800000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'append' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1215.367004367679" y="72" width="73.61693014457089" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 6.22% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="1215.3732936777942" y="48" width="1" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 0.15% (15147 15147 0.0009832 0.0009832)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="1217.1920141793112" y="48" width="7.83333605664572" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 0.74% (3 3 0.0047753000000000006 0.0047753000000000006)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="1226.0277549721773" y="48" width="4.530523347676454" height="23"><g>
+    <title>~:0:&lt;method 'extend' of 'list' objects&gt; 0.46% (15147 15147 0.0029898000000000004 0.0029898000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'extend' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1231.561977914039" y="48" width="34.92028484408831" height="23"><g>
+    <title>~:0:&lt;method 'sort' of 'list' objects&gt; 2.99% (7982 7982 0.0143052 0.0194185)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'sort' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1231.561977914039" y="24" width="8.4585674739695" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:240:&lt;lambda&gt; 0.79% (111829 111829 0.0051133 0.0051133)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;lambda&gt;</text>
+</g></svg>
+<svg class="func_g" x="1.2010732522731693" y="168" width="10.165930190507519" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\collections\__init__.py:616:__missing__ 0.93% (118994 118994 0.0060363000000000005 0.0060363000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">__missing__</text>
+</g></svg>
+<svg class="func_g" x="1.2010732522731693" y="192" width="10.165930190507519" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 0.93% (118994 118994 0.0060363000000000005 0.0060363000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="1.2010732522731693" y="216" width="10.165930190507519" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="1.2010732522731693" y="240" width="10.165930190507519" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="168" width="10.316318694141907" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:351:raw_decode 0.94% (200 200 0.0061176 0.0061176)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">raw_decode</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="192" width="10.316318694141907" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:340:decode 0.94% (200 200 0.0061176 0.0061176)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">decode</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="216" width="10.316318694141907" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py:304:loads 0.04% (200 200 0.0002422 0.0066511)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">loads</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="240" width="10.316318694141907" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\corpus.py:29:iter_documents 0.02% (200 200 0.0001522 0.006852100000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">iter_documents</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="264" width="10.316318694141906" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.57% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="13.161121334665598" y="288" width="10.316318694141906" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="25.145586738681317" y="168" width="17.81373129045853" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\corpus.py:29:iter_documents 1.57% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">iter_documents</text>
+</g></svg>
+<svg class="func_g" x="25.145586738681317" y="192" width="17.81373129045853" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.57% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="25.145586738681317" y="216" width="17.81373129045853" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="43.965607339254944" y="168" width="435.9858912892746" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="43.965607339254944" y="192" width="435.9858912892747" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="43.965607339254944" y="216" width="435.9858912892747" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="480.9514986285296" y="168" width="21.482248884649426" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="480.9514986285296" y="192" width="21.482248884649426" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="480.9514986285296" y="216" width="21.482248884649426" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="503.433747513179" y="168" width="8.4585674739695" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:240:&lt;lambda&gt; 0.79% (111829 111829 0.0051133 0.0051133)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;lambda&gt;</text>
+</g></svg>
+<svg class="func_g" x="503.433747513179" y="192" width="8.4585674739695" height="23"><g>
+    <title>~:0:&lt;method 'sort' of 'list' objects&gt; 0.79% (111829 111829 0.0051133 0.0051133)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'sort' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="503.433747513179" y="216" width="8.4585674739695" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 2.21% (7982 7982 0.0143052 0.0194185)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="503.433747513179" y="240" width="8.4585674739695" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="503.433747513179" y="264" width="8.4585674739695" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="513.2448863130121" y="168" width="4.018129553005781" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.42% (1 1 0.0027128 0.7002702000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="518.2630158660179" y="168" width="407.96460999032246" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 34.08% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="518.2630158660179" y="192" width="407.9646099903224" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 34.08% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="518.2630158660179" y="216" width="407.96460999032246" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="518.2630158660179" y="240" width="407.9646099903224" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="927.3092019081271" y="168" width="1.8699601892835704" height="23"><g>
+    <title>~:0:&lt;built-in method _codecs.utf_8_decode&gt; 0.24% (444 444 0.0015515000000000001 0.0015515000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(182, 182, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method _codecs.utf_8_decode&gt;</text>
+</g></svg>
+<svg class="func_g" x="927.3092019081271" y="192" width="1.8699601892835704" height="23"><g>
+    <title>&lt;frozen codecs&gt;:322:decode 0.24% (444 444 0.0015515000000000001 0.0015515000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">decode</text>
+</g></svg>
+<svg class="func_g" x="927.3092019081271" y="216" width="1.8699601892835704" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\corpus.py:29:iter_documents 0.03% (444 444 0.0002021 0.0017536000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">iter_documents</text>
+</g></svg>
+<svg class="func_g" x="927.3092019081271" y="240" width="1.8699601892835704" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.57% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="927.3092019081271" y="264" width="1.8699601892835704" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="930.4951074408397" y="168" width="1" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 0.16% (15348 15348 0.0010076 0.0010076)</title>
+    <rect height="100%" width="100%" fill="rgb(182, 182, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="930.5402424899007" y="192" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 0.15% (15147 15147 0.0009832 0.0009832)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="930.5402424899007" y="216" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="930.5402424899007" y="240" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="932.3589629914179" y="168" width="7.83333605664572" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 0.74% (3 3 0.0047753000000000006 0.0047753000000000006)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="932.3589629914179" y="192" width="7.83333605664572" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 0.74% (3 3 0.0047753000000000006 0.0047753000000000006)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="932.3589629914179" y="216" width="7.83333605664572" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="932.3589629914179" y="240" width="7.83333605664572" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="941.3289990532121" y="168" width="16.611548159929757" height="23"><g>
+    <title>~:0:&lt;built-in method unicodedata.normalize&gt; 1.47% (200 200 0.009520800000000001 0.009520800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method unicodedata.normalize&gt;</text>
+</g></svg>
+<svg class="func_g" x="941.3289990532121" y="192" width="16.611548159929757" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 1.47% (200 200 0.009520800000000001 0.009520800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="941.3289990532121" y="216" width="16.611548159929757" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 34.08% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="941.3289990532121" y="240" width="16.611548159929757" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="941.3289990532121" y="264" width="16.611548159929757" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="958.9928964708646" y="168" width="24.076034367996783" height="23"><g>
+    <title>~:0:&lt;method 'append' of 'list' objects&gt; 2.09% (119195 119195 0.013556100000000001 0.013556100000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'append' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="959.0415461344021" y="192" width="24.02738470445946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 2.09% (118994 118994 0.013529800000000002 0.013529800000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="959.0415461344021" y="216" width="24.02738470445946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="959.0415461344021" y="240" width="24.02738470445946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="984.0689308388614" y="168" width="44.00778302126742" height="23"><g>
+    <title>~:0:&lt;method 'casefold' of 'str' objects&gt; 3.75% (200 200 0.0243312 0.0243312)</title>
+    <rect height="100%" width="100%" fill="rgb(230, 230, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'casefold' of 'str' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="984.0689308388614" y="192" width="44.00778302126742" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 3.75% (200 200 0.0243312 0.0243312)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="984.0689308388614" y="216" width="44.00778302126742" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 34.08% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="984.0689308388614" y="240" width="44.00778302126742" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="984.0689308388614" y="264" width="44.00778302126742" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1029.2271023637632" y="168" width="4.530523347676454" height="23"><g>
+    <title>~:0:&lt;method 'extend' of 'list' objects&gt; 0.46% (15147 15147 0.0029898000000000004 0.0029898000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'extend' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1029.2271023637632" y="192" width="4.530523347676454" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 0.46% (15147 15147 0.0029898000000000004 0.0029898000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="1029.2271023637632" y="216" width="4.530523347676454" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="1029.2271023637632" y="240" width="4.530523347676454" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1035.263545216286" y="168" width="134.7843555877283" height="23"><g>
+    <title>~:0:&lt;method 'group' of 're.Match' objects&gt; 11.32% (520484 520484 0.073405 0.073405)</title>
+    <rect height="100%" width="100%" fill="rgb(198, 198, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'group' of 're.Match' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1035.263545216286" y="192" width="134.7843555877283" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 11.32% (520484 520484 0.073405 0.073405)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="1035.263545216286" y="216" width="134.7843555877283" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:152:_build_partial_from_docs 34.08% (520684 520684 0.2210862 0.3285303)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_build_partial_from_docs</text>
+</g></svg>
+<svg class="func_g" x="1035.263545216286" y="240" width="134.7843555877283" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 36.42% (1 1 0.23623450000000001 0.6362982)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="1035.263545216286" y="264" width="134.7843555877283" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1171.5393918915374" y="168" width="25.46171737011881" height="23"><g>
+    <title>~:0:&lt;method 'sort' of 'list' objects&gt; 2.21% (7982 7982 0.0143052 0.0194185)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'sort' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1171.5393918915374" y="192" width="25.46171737011881" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:221:merge 2.21% (7982 7982 0.0143052 0.0194185)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">merge</text>
+</g></svg>
+<svg class="func_g" x="1171.5393918915374" y="216" width="25.46171737011881" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.87% (1 1 0.0121539 0.0403379)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="1171.5393918915374" y="240" width="25.46171737011881" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1198.0536434990884" y="168" width="1" height="23"><g>
+    <title>~:0:&lt;method 'strip' of 'str' objects&gt; 0.16% (200 200 0.0010417 0.0010417)</title>
+    <rect height="100%" width="100%" fill="rgb(198, 198, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'strip' of 'str' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1198.0536434990884" y="192" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\corpus.py:29:iter_documents 0.16% (200 200 0.0010417 0.0010417)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">iter_documents</text>
+</g></svg>
+<svg class="func_g" x="1198.0536434990884" y="216" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:270:build_index 1.57% (201 201 0.010170700000000001 0.020610100000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">build_index</text>
+</g></svg>
+<svg class="func_g" x="1198.0536434990884" y="240" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.03% (1 1 0.00019060000000000003 0.6975094000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+</svg>

@@ -1,0 +1,1303 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="504"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style type="text/css">
+    .func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+</style>
+<svg class="func_g" x="0.9375016198932017" y="216" width="1207.755643090813" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 100.73% (300 300 0.0012361000000000002 0.4080752)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1.4952632471471985" y="192" width="1203.2737040669256" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 100.36% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1.4952632471471985" y="168" width="16.82734123010185" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\heapq.py:537:nlargest 1.49% (300 300 0.0047191 0.0060185)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">nlargest</text>
+</g></svg>
+<svg class="func_g" x="1.9739370600215789" y="144" width="1.2855489728581184" height="23"><g>
+    <title>~:0:&lt;built-in method _heapq.heapreplace&gt; 0.19% (4200 4200 0.0007716 0.0007716)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method _heapq.heapreplace&gt;</text>
+</g></svg>
+<svg class="func_g" x="20.473672816871474" y="168" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:94:terms 0.12% (300 300 0.00015680000000000002 0.00047620000000000003)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">terms</text>
+</g></svg>
+<svg class="func_g" x="21.884220277829275" y="168" width="27.425700775055645" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 2.37% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="21.884220277829275" y="144" width="15.634600014291" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 1.39% (293 293 0.0021577206500693028 0.005615831261307967)</title>
+    <rect height="100%" width="100%" fill="rgb(85, 218, 84)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="21.884220277829275" y="120" width="5.371935085213231" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 0.53% (1969 1969 0.0013042148404130767 0.002151161567805854)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="22.722138326428794" y="96" width="1" height="23"><g>
+    <title>~:0:&lt;method 'finditer' of 're.Pattern' objects&gt; 0.10% (984 984 0.0004202470041331026 0.0004202470041331026)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'finditer' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="30.00504404866575" y="120" width="1" height="23"><g>
+    <title>~:0:&lt;method 'match' of 're.Pattern' objects&gt; 0.14% (984 984 0.0005583242566296651 0.0005583242566296651)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'match' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="38.66185758380104" y="144" width="9.588523723631118" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.88% (293 293 0.0001598727942187847 0.003574679432459027)</title>
+    <rect height="100%" width="100%" fill="rgb(57, 242, 168)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="38.88032243516365" y="120" width="8.896501199102737" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.82% (293 293 0.0001529324283431909 0.0033410530318580514)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="39.1016827782607" y="96" width="8.22214117415437" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.77% (293 293 0.0006349946018008105 0.0031133894808121633)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="39.96716367590874" y="72" width="5.475748845821654" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.54% (972 972 0.0004571277268180194 0.0021862090328292304)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="40.86623995036013" y="48" width="3.222618908210741" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:225:_parse_atom 0.35% (972 972 0.0007801524118485692 0.001425553680217583)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_atom</text>
+</g></svg>
+<svg class="func_g" x="50.30992105288492" y="168" width="385.60878412852713" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 32.22% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="50.36857044332374" y="144" width="45.89788909094185" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:74:num_docs 3.91% (72000 72000 0.010655600000000001 0.0158327)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">num_docs</text>
+</g></svg>
+<svg class="func_g" x="50.36857044332374" y="120" width="14.335038345494771" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 1.28% (71825 71825 0.0051771000000000005 0.0051771000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(85, 218, 84)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="97.2664595342656" y="144" width="23.594829226847498" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:84:doc_length 2.05% (72000 72000 0.0083032 0.0083032)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">doc_length</text>
+</g></svg>
+<svg class="func_g" x="121.86128876111309" y="144" width="101.58489289451279" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:87:df 8.55% (72000 72000 0.021344400000000003 0.0346326)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">df</text>
+</g></svg>
+<svg class="func_g" x="121.86128876111309" y="120" width="15.435454938829132" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 1.37% (72000 72000 0.005548600000000001 0.005548600000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="138.29674369994223" y="120" width="21.925395062639573" height="23"><g>
+    <title>~:0:&lt;method 'get' of 'dict' objects&gt; 1.91% (72000 72000 0.0077396 0.0077396)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'get' of 'dict' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="224.44618165562588" y="144" width="21.65347516151415" height="23"><g>
+    <title>~:0:&lt;built-in method math.log&gt; 1.89% (72000 72000 0.007647800000000001 0.007647800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method math.log&gt;</text>
+</g></svg>
+<svg class="func_g" x="436.91870518141207" y="168" width="624.4492442102857" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 52.12% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="437.20099239902913" y="144" width="617.8843631986923" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 51.57% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="437.6470832172153" y="120" width="583.4450264403597" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 48.70% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="437.6470832172153" y="96" width="338.8980324971073" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:110:intersect_merge 28.32% (393 393 0.07424047239819827 0.11474937749717114)</title>
+    <rect height="100%" width="100%" fill="rgb(57, 242, 168)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">intersect_merge</text>
+</g></svg>
+<svg class="func_g" x="437.6470832172153" y="72" width="110.09512509049434" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 9.26% (624745 624745 0.03750564942506125 0.03750564942506125)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="548.7422083077097" y="72" width="7.895914879132992" height="23"><g>
+    <title>~:0:&lt;method 'append' of 'list' objects&gt; 0.74% (32623 32623 0.0030032556739116186 0.0030032556739116186)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'append' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="777.5451157143226" y="96" width="23.38353076509377" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:35:evaluate 2.03% (590 590 0.008037308563434938 0.008231865762569377)</title>
+    <rect height="100%" width="100%" fill="rgb(44, 255, 210)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="801.9286464794164" y="96" width="202.6622362179626" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 16.97% (197 197 0.0015628118180977507 0.06875625214421305)</title>
+    <rect height="100%" width="100%" fill="rgb(99, 206, 42)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="801.9286464794164" y="72" width="116.2394156824816" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:110:intersect_merge 9.77% (136 136 0.025607413905904982 0.039579958344746646)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">intersect_merge</text>
+</g></svg>
+<svg class="func_g" x="801.9286464794164" y="48" width="37.319514399932885" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 3.19% (215490 215490 0.012936645708367276 0.012936645708367276)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="840.2481608793494" y="48" width="2.06842571205387" height="23"><g>
+    <title>~:0:&lt;method 'append' of 'list' objects&gt; 0.26% (11252 11252 0.001035898730474388 0.001035898730474388)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'append' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="919.1680621618981" y="72" width="7.410495577669273" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:35:evaluate 0.70% (203 203 0.002772270709289667 0.002839378400898726)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="927.5785577395673" y="72" width="69.24824885088054" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 5.85% (68 68 0.0005390532655613897 0.023715767833912108)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="997.8268065904477" y="72" width="2.1348861825871657" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 0.26% (271 271 0.0010583357465578206 0.0010583357465578206)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="1005.590882697379" y="96" width="8.088595668623439" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 0.76% (786 786 0.0030683045960464665 0.0030683045960464665)</title>
+    <rect height="100%" width="100%" fill="rgb(57, 242, 168)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="1022.092109657575" y="120" width="28.757456630676444" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 2.48% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="1022.092109657575" y="96" width="16.39981898277973" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 1.45% (307 307 0.0022569793499306974 0.005874168738692031)</title>
+    <rect height="100%" width="100%" fill="rgb(85, 218, 84)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="1022.092109657575" y="72" width="5.6650545824656495" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 0.56% (2059 2059 0.0013642108688123882 0.0022501185390918967)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="1022.9685733149825" y="48" width="1" height="23"><g>
+    <title>~:0:&lt;method 'finditer' of 're.Pattern' objects&gt; 0.11% (1030 1030 0.00043957905772843645 0.00043957905772843645)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'finditer' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1030.586504682536" y="72" width="1" height="23"><g>
+    <title>~:0:&lt;method 'match' of 're.Pattern' objects&gt; 0.14% (1030 1030 0.0005840080910094124 0.0005840080910094124)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'match' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1039.6415458827826" y="96" width="10.07561323553128" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.92% (307 307 0.00016722720578121527 0.003739120567540973)</title>
+    <rect height="100%" width="100%" fill="rgb(57, 242, 168)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="1039.8700604767341" y="72" width="9.3517565363347" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.86% (307 307 0.0001599675716568091 0.0034947469681419485)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="1040.1016037598033" y="48" width="8.646374840757781" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.80% (307 307 0.0006642053981991895 0.0032566105191878364)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="1041.006898202663" y="24" width="5.773643946860123" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.56% (1017 1017 0.0004781563543343265 0.002286778245167675)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="1041.9473334649313" y="0" width="3.4168663251901696" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:225:_parse_atom 0.37% (1017 1017 0.0008160407063278999 0.001491131494878845)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_atom</text>
+</g></svg>
+<svg class="func_g" x="1051.8495662882515" y="120" width="1" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 0.15% (300 300 0.0006149 0.0006149)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="1056.9381414314253" y="144" width="1.355750515959126" height="23"><g>
+    <title>~:0:&lt;method 'cache_info' of 'functools._lru_cache_wrapper' objects&gt; 0.20% (600 600 0.0004177 0.0007953000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'cache_info' of 'functools._lru_cache_wrapper' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="264" width="1" height="23"><g>
+    <title>&lt;string&gt;:2:__init__ 0.11% (1800 1800 0.00043450000000000004 0.00043450000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(230, 230, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">__init__</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="288" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:225:_parse_atom 0.11% (1800 1800 0.00043450000000000004 0.00043450000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_atom</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="312" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.36% (1800 1800 0.0014445 0.0026395000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.21% (1800 1800 0.0008464000000000001 0.0040479)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.08% (600 600 0.0003129 0.0068358)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="0.6688400182366034" y="408" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.08% (600 600 0.00032710000000000004 0.0073138000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="1.967716670126553" y="264" width="12.978400930293867" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\heapq.py:537:nlargest 1.16% (300 300 0.0047191 0.0060185)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">nlargest</text>
+</g></svg>
+<svg class="func_g" x="1.967716670126553" y="288" width="12.978400930293867" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 1.16% (300 300 0.0047191 0.0060185)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1.967716670126553" y="312" width="12.978400930293867" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="18.36881136001173" y="264" width="30.744723097615935" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:74:num_docs 2.65% (72301 72301 0.010717 0.015928400000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">num_docs</text>
+</g></svg>
+<svg class="func_g" x="18.369608545494202" y="288" width="30.553996470933917" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 2.63% (72000 72000 0.010655600000000001 0.0158327)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="18.369608545494202" y="312" width="30.553996470933917" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="18.369608545494202" y="336" width="30.553996470933917" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="50.12390177411938" y="264" width="23.594829226847498" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:84:doc_length 2.05% (72000 72000 0.0083032 0.0083032)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">doc_length</text>
+</g></svg>
+<svg class="func_g" x="50.12390177411938" y="288" width="23.594829226847498" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 2.05% (72000 72000 0.0083032 0.0083032)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="50.12390177411938" y="312" width="23.594829226847505" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="50.12390177411938" y="336" width="23.594829226847505" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="74.71873100096687" y="264" width="62.22404289304411" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:87:df 5.27% (72000 72000 0.021344400000000003 0.0346326)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">df</text>
+</g></svg>
+<svg class="func_g" x="74.71873100096687" y="288" width="62.22404289304411" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 5.27% (72000 72000 0.021344400000000003 0.0346326)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="74.71873100096687" y="312" width="62.22404289304411" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="74.71873100096687" y="336" width="62.22404289304411" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="138.1607837493795" y="264" width="334.69755871912304" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:110:intersect_merge 27.97% (600 600 0.11333130000000001 0.17516990000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">intersect_merge</text>
+</g></svg>
+<svg class="func_g" x="138.1607837493795" y="288" width="334.69755871912304" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 27.97% (600 600 0.11333130000000001 0.17516990000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="138.1607837493795" y="312" width="115.56758014377296" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="138.1607837493795" y="336" width="39.47691258888172" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="178.6376963382612" y="336" width="75.09066755489123" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="178.6376963382612" y="360" width="75.09066755489123" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="178.6376963382612" y="384" width="75.09066755489123" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="178.6376963382612" y="408" width="75.09066755489123" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="254.72836389315245" y="312" width="218.12997857535007" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="254.72836389315245" y="336" width="218.12997857535007" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="254.72836389315245" y="360" width="218.12997857535007" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="254.72836389315245" y="384" width="218.12997857535007" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="473.8583424685025" y="264" width="35.34277606621062" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:35:evaluate 3.03% (900 900 0.0122693 0.0125663)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="473.8583424685025" y="288" width="35.34277606621062" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 3.03% (900 900 0.0122693 0.0125663)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="473.8583424685025" y="312" width="11.61966121502174" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="473.8583424685025" y="336" width="3.382049651126974" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="478.2403921196294" y="336" width="7.237611563894765" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="478.2403921196294" y="360" width="7.237611563894765" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="478.2403921196294" y="384" width="7.237611563894765" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="478.2403921196294" y="408" width="7.237611563894765" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="486.47800368352426" y="312" width="22.72311485118888" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="486.47800368352426" y="336" width="22.72311485118888" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="486.47800368352426" y="360" width="22.72311485118888" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="486.47800368352426" y="384" width="22.72311485118888" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="510.5313916172347" y="264" width="13.47929042136477" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 1.21% (300 600 0.0048882000000000005 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="510.5313916172347" y="288" width="4.027787074345665" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="510.5313916172347" y="312" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="512.2772397996607" y="312" width="2.2819388919197015" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="512.2772397996607" y="336" width="2.2819388919197015" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="512.2772397996607" y="360" width="2.2819388919197015" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="512.2772397996607" y="384" width="2.2819388919197015" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="515.5591786915804" y="288" width="8.451503347019104" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="515.5591786915804" y="312" width="8.451503347019104" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="515.5591786915804" y="336" width="8.451503347019104" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="515.5591786915804" y="360" width="8.451503347019104" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="264" width="12.07674060455772" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 1.09% (600 600 0.004414700000000001 0.01149)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="288" width="12.07674060455772" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 1.09% (600 600 0.004414700000000001 0.01149)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="312" width="5.688027236081135" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="336" width="5.688027236081135" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="360" width="5.688027236081135" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="526.0909564170357" y="384" width="5.688027236081135" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="532.7789836531168" y="312" width="5.388713368476584" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="532.7789836531168" y="336" width="5.388713368476584" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="539.4603515557022" y="264" width="3.0642842737929294" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:178:peek 0.34% (6600 6600 0.0013721 0.001894)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">peek</text>
+</g></svg>
+<svg class="func_g" x="541.2731854281946" y="288" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.10% (1800 1800 0.00041420000000000004 0.000562)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="541.2731854281946" y="312" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.21% (1800 1800 0.0008464000000000001 0.0040479)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="541.2731854281946" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="541.2731854281946" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.08% (600 600 0.0003129 0.0068358)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="541.2731854281946" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.08% (600 600 0.00032710000000000004 0.0073138000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="264" width="2.8483478817227423" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 240, 141)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="288" width="2.8483478817227423" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="312" width="2.8483478817227423" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.08% (600 600 0.0003129 0.0068358)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="336" width="2.8483478817227423" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.08% (600 600 0.00032710000000000004 0.0073138000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="408" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="546.2299130157462" y="432" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="548.1981294257213" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="548.1981294257213" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="264" width="1.507113336738092" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.21% (1800 1800 0.0008464000000000001 0.0040479)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 90, 49)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="288" width="1.507113336738092" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.21% (1800 1800 0.0008464000000000001 0.0040479)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="312" width="1.5071133367380916" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="336" width="1.5071133367380916" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.08% (600 600 0.0003129 0.0068358)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="360" width="1.5071133367380916" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.08% (600 600 0.00032710000000000004 0.0073138000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="408" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="432" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="550.078260897469" y="456" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="551.3605102581546" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="551.3605102581546" y="408" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="264" width="3.2787396206500157" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:225:_parse_atom 0.36% (1800 1800 0.0014445 0.0026395000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_atom</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="288" width="3.2787396206500166" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:218:_parse_not 0.36% (1800 1800 0.0014445 0.0026395000000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_not</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="312" width="3.2787396206500166" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:204:_parse_and 0.21% (1800 1800 0.0008464000000000001 0.0040479)</title>
+    <rect height="100%" width="100%" fill="rgb(190, 190, 190)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_and</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="336" width="3.2787396206500166" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:196:_parse_or 0.32% (600 600 0.0012992000000000001 0.006370000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_parse_or</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="360" width="3.2787396206500166" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:188:parse 0.08% (600 600 0.0003129 0.0068358)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="384" width="3.2787396206500166" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.08% (600 600 0.00032710000000000004 0.0073138000000000005)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="408" width="1.1883379034858996" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="432" width="1.1883379034858996" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="456" width="1.1883379034858996" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="552.585374234207" y="480" width="1.1883379034858996" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="554.773712137693" y="408" width="1.090401717164117" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="554.773712137693" y="432" width="1.090401717164117" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="556.864113854857" y="264" width="1.1919469153901088" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 0.18% (600 600 0.0007400000000000001 0.0196426)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 215, 125)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="559.0560607702472" y="264" width="188.819048364272" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="559.0560607702472" y="288" width="188.819048364272" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="559.0560607702472" y="312" width="188.819048364272" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="748.8751091345191" y="264" width="1.4143999063979424" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="748.8751091345191" y="288" width="1.4143999063979424" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="748.8751091345191" y="312" width="1.4143999063979424" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="748.8751091345191" y="336" width="1.4143999063979424" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="751.7207894069722" y="264" width="2.074057444313317" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="751.7207894069722" y="288" width="2.074057444313317" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="751.7207894069722" y="312" width="2.074057444313317" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="754.7948468512855" y="264" width="134.03459351356503" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 115, 64)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="754.7948468512855" y="288" width="134.03459351356503" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="889.8294403648505" y="264" width="2.6614399758293423" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 0.31% (300 300 0.0012361000000000002 0.4080752)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="264" width="6.064585666493795" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 0.59% (3600 3600 0.002385 0.0039338)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 165, 95)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="288" width="6.064585666493795" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 0.59% (3600 3600 0.002385 0.0039338)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="312" width="6.064585666493795" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 1.09% (600 600 0.004414700000000001 0.01149)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="336" width="2.613143578964257" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="360" width="2.613143578964257" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="384" width="2.613143578964257" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="893.49088034068" y="408" width="2.613143578964257" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="897.1040239196442" y="336" width="2.451442087529538" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="897.1040239196442" y="360" width="2.451442087529538" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="901.4837851467456" y="264" width="1.2855489728581184" height="23"><g>
+    <title>~:0:&lt;built-in method _heapq.heapreplace&gt; 0.19% (4200 4200 0.0007716 0.0007716)</title>
+    <rect height="100%" width="100%" fill="rgb(198, 198, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method _heapq.heapreplace&gt;</text>
+</g></svg>
+<svg class="func_g" x="901.4837851467456" y="288" width="1.2855489728581184" height="23"><g>
+    <title>C:\Users\Andrey\AppData\Local\Python\pythoncore-3.14-64\Lib\heapq.py:537:nlargest 0.19% (4200 4200 0.0007716 0.0007716)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">nlargest</text>
+</g></svg>
+<svg class="func_g" x="901.4837851467456" y="312" width="1.2855489728581189" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 1.16% (300 300 0.0047191 0.0060185)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="901.4837851467456" y="336" width="1.2855489728581189" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="904.1659580276724" y="264" width="203.27553068935495" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.len&gt; 17.02% (1107601 1107901 0.0689633 0.0690369)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 140, 79)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.len&gt;</text>
+</g></svg>
+<svg class="func_g" x="904.2842767681708" y="288" width="14.415157105832145" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:74:num_docs 1.29% (72301 72301 0.005211400000000001 0.005211400000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">num_docs</text>
+</g></svg>
+<svg class="func_g" x="904.2846638794211" y="312" width="14.322540739151993" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 2.63% (72000 72000 0.010655600000000001 0.0158327)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="904.2846638794211" y="336" width="14.322540739151993" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="904.2846638794211" y="360" width="14.322540739151993" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="919.6994338740028" y="288" width="15.412584088233533" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:87:df 1.37% (72000 72000 0.005548600000000001 0.005548600000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">df</text>
+</g></svg>
+<svg class="func_g" x="919.6994338740028" y="312" width="15.412584088233533" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 5.27% (72000 72000 0.021344400000000003 0.0346326)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="919.6994338740028" y="336" width="15.412584088233533" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="919.6994338740028" y="360" width="15.412584088233533" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="936.1785722537667" y="288" width="168.35552921236396" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:110:intersect_merge 14.13% (953700 953700 0.057254000000000006 0.057254000000000006)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">intersect_merge</text>
+</g></svg>
+<svg class="func_g" x="936.1785722537667" y="312" width="168.35552921236396" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 27.97% (600 600 0.11333130000000001 0.17516990000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="936.1785722537667" y="336" width="57.806993710582375" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="936.1785722537667" y="360" width="19.420133463372036" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="956.5987057171387" y="360" width="37.386860247210336" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="956.5987057171387" y="384" width="37.386860247210336" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="956.5987057171387" y="408" width="37.386860247210336" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="956.5987057171387" y="432" width="37.386860247210336" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="994.985565964349" y="336" width="109.54853550178164" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="994.985565964349" y="360" width="109.54853550178164" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="994.985565964349" y="384" width="109.54853550178164" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="994.985565964349" y="408" width="109.54853550178164" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1106.2250829106413" y="288" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:178:peek 0.13% (6600 6600 0.0005219000000000001 0.0005219000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">peek</text>
+</g></svg>
+<svg class="func_g" x="1108.4414887170274" y="264" width="14.69552475036366" height="23"><g>
+    <title>~:0:&lt;built-in method builtins.sorted&gt; 1.31% (1500 1500 0.0052988 0.0052988)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method builtins.sorted&gt;</text>
+</g></svg>
+<svg class="func_g" x="1108.4414887170274" y="288" width="12.874135347291526" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 1.16% (1200 1200 0.0046839 0.0046839)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1108.4414887170274" y="312" width="3.8176530987945787" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1108.4414887170274" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1110.114370002913" y="336" width="2.144771812909188" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1110.114370002913" y="360" width="2.144771812909188" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1110.114370002913" y="384" width="2.144771812909188" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1110.114370002913" y="408" width="2.144771812909188" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1113.259141815822" y="312" width="8.056482248496946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1113.259141815822" y="336" width="8.056482248496946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1113.259141815822" y="360" width="8.056482248496946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1113.259141815822" y="384" width="8.056482248496946" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1122.3156240643189" y="288" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.15% (300 300 0.0006149 0.0006149)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1122.3156240643189" y="312" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1122.3156240643189" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1122.3156240643189" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1124.548151618548" y="264" width="21.65347516151415" height="23"><g>
+    <title>~:0:&lt;built-in method math.log&gt; 1.89% (72000 72000 0.007647800000000001 0.007647800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(182, 182, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;built-in method math.log&gt;</text>
+</g></svg>
+<svg class="func_g" x="1124.548151618548" y="288" width="21.65347516151415" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 1.89% (72000 72000 0.007647800000000001 0.007647800000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="1124.548151618548" y="312" width="21.65347516151415" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1124.548151618548" y="336" width="21.65347516151415" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1148.213476869653" y="264" width="14.296234960911516" height="23"><g>
+    <title>~:0:&lt;method 'append' of 'list' objects&gt; 1.27% (54600 54600 0.005164 0.005164)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'append' of 'list' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1148.213476869653" y="288" width="12.579999767969584" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:110:intersect_merge 1.13% (49800 49800 0.0045846 0.0045846)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">intersect_merge</text>
+</g></svg>
+<svg class="func_g" x="1148.213476869653" y="312" width="12.579999767969584" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 27.97% (600 600 0.11333130000000001 0.17516990000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1148.213476869653" y="336" width="3.7155174954063126" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1148.213476869653" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:89:evaluate 0.59% (300 300 0.0023857 0.10495940000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">evaluate</text>
+</g></svg>
+<svg class="func_g" x="1149.8508926008324" y="360" width="2.078101764227132" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1149.8508926008324" y="384" width="2.078101764227132" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1149.8508926008324" y="408" width="2.078101764227132" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1149.8508926008324" y="432" width="2.078101764227132" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1152.9289943650595" y="336" width="7.86448227256327" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.62% (300 300 0.0025025 0.19730830000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1152.9289943650595" y="360" width="7.86448227256327" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1152.9289943650595" y="384" width="7.86448227256327" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1152.9289943650595" y="408" width="7.86448227256327" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1164.0159330844026" y="264" width="1" height="23"><g>
+    <title>~:0:&lt;method 'cache_info' of 'functools._lru_cache_wrapper' objects&gt; 0.10% (600 600 0.0004177 0.0007953000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(255, 190, 110)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'cache_info' of 'functools._lru_cache_wrapper' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1164.0159330844026" y="288" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.10% (600 600 0.0004177 0.0007953000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1164.0159330844026" y="312" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1164.0159330844026" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1166.819255463761" y="264" width="1.2763664925368898" height="23"><g>
+    <title>~:0:&lt;method 'finditer' of 're.Pattern' objects&gt; 0.19% (1800 1800 0.0007685000000000001 0.0007685000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'finditer' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1166.819255463761" y="288" width="1.2763664925368898" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\tokenize.py:10:tokenize 0.19% (1800 1800 0.0007685000000000001 0.0007685000000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">tokenize</text>
+</g></svg>
+<svg class="func_g" x="1166.819255463761" y="312" width="1.2763664925368898" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 0.59% (3600 3600 0.002385 0.0039338)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="1166.819255463761" y="336" width="1.2763664925368898" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 1.09% (600 600 0.004414700000000001 0.01149)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="1169.095621956298" y="264" width="23.118821295356703" height="23"><g>
+    <title>~:0:&lt;method 'get' of 'dict' objects&gt; 2.01% (73801 73801 0.0081425 0.0081425)</title>
+    <rect height="100%" width="100%" fill="rgb(166, 166, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'get' of 'dict' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1169.0962143743832" y="288" width="21.925395062639573" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\index.py:87:df 1.91% (72000 72000 0.0077396 0.0077396)</title>
+    <rect height="100%" width="100%" fill="rgb(232, 232, 232)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">df</text>
+</g></svg>
+<svg class="func_g" x="1169.0962143743832" y="312" width="21.925395062639573" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\ranking.py:34:score 5.27% (72000 72000 0.021344400000000003 0.0346326)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">score</text>
+</g></svg>
+<svg class="func_g" x="1169.0962143743832" y="336" width="21.925395062639573" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 15.82% (72000 72000 0.06408280000000001 0.13051890000000002)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1169.0962143743832" y="360" width="21.925395062639573" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1193.2144432516545" y="264" width="1" height="23"><g>
+    <title>~:0:&lt;method 'group' of 're.Match' objects&gt; 0.16% (3600 3600 0.0006514 0.0006514)</title>
+    <rect height="100%" width="100%" fill="rgb(198, 198, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'group' of 're.Match' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="264" width="2.024294325153109" height="23"><g>
+    <title>~:0:&lt;method 'match' of 're.Pattern' objects&gt; 0.25% (1800 1800 0.001021 0.001021)</title>
+    <rect height="100%" width="100%" fill="rgb(214, 214, 255)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">&lt;method 'match' of 're.Pattern' objects&gt;</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="288" width="2.024294325153109" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:143:_lex_query 0.25% (1800 1800 0.001021 0.001021)</title>
+    <rect height="100%" width="100%" fill="rgb(218, 218, 218)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_lex_query</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="312" width="2.024294325153109" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\query.py:249:parse_query 1.09% (600 600 0.004414700000000001 0.01149)</title>
+    <rect height="100%" width="100%" fill="rgb(197, 197, 197)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">parse_query</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:18:_cached_match_ids 0.09% (300 300 0.0003823 0.0100461)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">_cached_match_ids</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:36:get_matched_doc_ids 0.20% (300 300 0.0008151 0.208935)</title>
+    <rect height="100%" width="100%" fill="rgb(204, 204, 204)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">get_matched_doc_ids</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="384" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.26% (300 300 0.0010378 0.21115130000000001)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1195.368771618632" y="408" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+<svg class="func_g" x="1196.9155303583061" y="336" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\search.py:47:search 0.09% (300 300 0.0003577 0.0095965)</title>
+    <rect height="100%" width="100%" fill="rgb(225, 225, 225)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">search</text>
+</g></svg>
+<svg class="func_g" x="1196.9155303583061" y="360" width="1" height="23"><g>
+    <title>C:\Users\Andrey\Desktop\Python\findex\src\findex\timing.py:12:wrapper 11.25% (300 300 0.045587600000000006 0.40656210000000004)</title>
+    <rect height="100%" width="100%" fill="rgb(211, 211, 211)" rx="2" ry="2" />
+    <text alignment-baseline="central" x="4.0" y="12.0" font-size="12px" fill="rgb(0,0,0)">wrapper</text>
+</g></svg>
+</svg>

@@ -9,7 +9,7 @@ import uuid
 from collections.abc import AsyncGenerator, Awaitable, Callable
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 
 from fastapi import Depends, FastAPI, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +22,15 @@ from findex.index import Index
 from findex.query import QuerySyntaxError, parse_query
 from findex.ranking import ScorerName, make_scorer
 from findex.search import search as run_search
+from findex.semantic import (
+    SearchMode,
+    SemanticIndex,
+    SentenceTransformerEncoder,
+    TextEncoder,
+    hybrid_search,
+    load_semantic_index,
+    semantic_search,
+)
 from findex.store import load_index
 from findex.web.config import Settings
 from findex.web.deps import get_index, get_settings, get_start_time
@@ -71,35 +80,83 @@ def _read_document_content(doc_path: str) -> str:
     return path.read_text(encoding="utf-8", errors="replace")
 
 
+def _get_or_init_encoder(app_state: Any, model_name: str) -> TextEncoder:
+    existing: TextEncoder | None = getattr(app_state, "text_encoder", None)
+    if existing is not None:
+        return existing
+    encoder = SentenceTransformerEncoder(model_name)
+    app_state.text_encoder = encoder
+    return encoder
+
+
 def _execute_search_sync(
     index: Index,
     query: str,
     scorer_name: ScorerName,
     k: int,
     page: int,
+    *,
+    mode: SearchMode = "keyword",
+    sem_index: SemanticIndex | None = None,
+    app_state: Any = None,
 ) -> SearchResponse:
     t0 = time.perf_counter()
-    try:
-        tree = parse_query(query)
-        matched_ids = tree.evaluate(index)
-    except QuerySyntaxError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
-            detail=f"Invalid search query: {exc}",
-        ) from exc
 
-    total = len(matched_ids)
-    total_pages = math.ceil(total / k) if total > 0 else 0
-    fetch_limit = min(total, page * k) if total > 0 else k
+    if mode == "keyword":
+        try:
+            tree = parse_query(query)
+            matched_ids = tree.evaluate(index)
+        except QuerySyntaxError as exc:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                detail=f"Invalid search query: {exc}",
+            ) from exc
 
-    scorer = make_scorer(scorer_name)
-    raw_results = run_search(
-        index,
-        query,
-        scorer=scorer,
-        k=max(1, fetch_limit),
-        with_snippets=True,
-    )
+        total = len(matched_ids)
+        total_pages = math.ceil(total / k) if total > 0 else 0
+        fetch_limit = min(total, page * k) if total > 0 else k
+
+        scorer = make_scorer(scorer_name)
+        raw_results = run_search(
+            index,
+            query,
+            scorer=scorer,
+            k=max(1, fetch_limit),
+            with_snippets=True,
+        )
+    else:
+        if sem_index is None:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                detail="Semantic embeddings are not available. Run `findex embed` first.",
+            )
+        encoder = (
+            _get_or_init_encoder(app_state, sem_index.model_name)
+            if app_state is not None
+            else SentenceTransformerEncoder(sem_index.model_name)
+        )
+        fetch_limit = page * k
+        if mode == "semantic":
+            raw_results = semantic_search(
+                index,
+                sem_index,
+                query,
+                encoder=encoder,
+                k=max(1, fetch_limit),
+                with_snippets=True,
+            )
+        else:
+            raw_results = hybrid_search(
+                index,
+                sem_index,
+                query,
+                encoder=encoder,
+                scorer=make_scorer(scorer_name),
+                k=max(1, fetch_limit),
+                with_snippets=True,
+            )
+        total = len(raw_results)
+        total_pages = math.ceil(total / k) if total > 0 else 0
 
     offset = (page - 1) * k
     page_slice = raw_results[offset : offset + k]
@@ -123,6 +180,7 @@ def _execute_search_sync(
     return SearchResponse(
         query=query,
         scorer=scorer_name,
+        mode=mode,
         page=page,
         k=k,
         total=total,
@@ -141,6 +199,8 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
         application.state.settings = active_settings
         application.state.started_at = time.perf_counter()
         application.state.index = None
+        application.state.semantic_index = None
+        application.state.text_encoder = None
         application.state.index_size_bytes = 0
 
         if load_on_startup:
@@ -148,11 +208,14 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
             if idx_path.exists():
                 application.state.index = load_index(idx_path)
                 application.state.index_size_bytes = idx_path.stat().st_size
+                sem_idx = load_semantic_index(idx_path)
+                application.state.semantic_index = sem_idx
                 log.info(
-                    "Loaded index from %s (%d docs, %d terms)",
+                    "Loaded index from %s (%d docs, %d terms, semantic_chunks=%d)",
                     idx_path,
                     application.state.index.num_docs,
                     len(application.state.index),
+                    sem_idx.num_chunks if sem_idx is not None else 0,
                 )
             else:
                 log.warning(
@@ -170,13 +233,15 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
 
     application = FastAPI(
         title="findex Search API",
-        description="Full-text search engine HTTP API and web interface.",
-        version="0.7.0",
+        description="Full-text and hybrid semantic search engine HTTP API and web interface.",
+        version="1.0.0",
         lifespan=lifespan,
     )
     application.state.settings = active_settings
     application.state.started_at = time.perf_counter()
     application.state.index = None
+    application.state.semantic_index = None
+    application.state.text_encoder = None
     application.state.index_size_bytes = 0
 
     application.add_middleware(
@@ -247,14 +312,30 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
 
     @application.get("/search", response_model=SearchResponse, tags=["search"])
     async def api_search(
+        request: Request,
         q: Annotated[str, Query(min_length=1, max_length=200, description="Search query")],
         k: Annotated[int, Query(ge=1, le=100, description="Results per page")] = 10,
         scorer: Annotated[Literal["bm25", "tfidf"], Query(description="Ranking scorer")] = "bm25",
+        mode: Annotated[
+            Literal["keyword", "semantic", "hybrid"],
+            Query(description="Search retrieval mode"),
+        ] = "keyword",
         page: Annotated[int, Query(ge=1, le=1000, description="1-based page number")] = 1,
         index: Annotated[Index, Depends(get_index)] = ...,  # type: ignore[assignment]
         _settings: Annotated[Settings, Depends(get_settings)] = ...,  # type: ignore[assignment]
     ) -> SearchResponse:
-        return await asyncio.to_thread(_execute_search_sync, index, q, scorer, k, page)
+        sem_idx: SemanticIndex | None = getattr(request.app.state, "semantic_index", None)
+        return await asyncio.to_thread(
+            _execute_search_sync,
+            index,
+            q,
+            scorer,
+            k,
+            page,
+            mode=mode,
+            sem_index=sem_idx,
+            app_state=request.app.state,
+        )
 
     @application.get("/docs/{doc_id}", response_model=DocumentResponse, tags=["documents"])
     async def api_get_document(
@@ -282,9 +363,11 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
         q: Annotated[str | None, Query(max_length=200)] = None,
         k: Annotated[int, Query(ge=1, le=50)] = 10,
         scorer: Annotated[Literal["bm25", "tfidf"], Query()] = "bm25",
+        mode: Annotated[Literal["keyword", "semantic", "hybrid"], Query()] = "keyword",
         page: Annotated[int, Query(ge=1, le=1000)] = 1,
     ) -> HTMLResponse:
         idx: Index | None = getattr(request.app.state, "index", None)
+        sem_idx: SemanticIndex | None = getattr(request.app.state, "semantic_index", None)
         search_res: SearchResponse | None = None
         error_msg: str | None = None
 
@@ -300,6 +383,9 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
                         scorer,
                         k,
                         page,
+                        mode=mode,
+                        sem_index=sem_idx,
+                        app_state=request.app.state,
                     )
                 except HTTPException as exc:
                     error_msg = str(exc.detail)
@@ -311,6 +397,8 @@ def create_app(settings: Settings | None = None, *, load_on_startup: bool = True
                 "query": q or "",
                 "k": k,
                 "scorer": scorer,
+                "mode": mode,
+                "has_semantic": sem_idx is not None,
                 "page": page,
                 "search_res": search_res,
                 "error_msg": error_msg,

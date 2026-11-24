@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "findex"
-version = "0.7.0"
+version = "1.0.0"
 description = "An incremental full-text search engine built from scratch in Python."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -12,8 +12,10 @@ dependencies = [
     "fastapi>=0.165.0",
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
+    "numpy>=2.5.5",
     "pydantic-settings>=2.16.3",
     "rich>=13.9.0",
+    "sentence-transformers>=6.3.0",
     "typer>=0.15.0",
     "uvicorn[standard]>=0.54.0",
 ]
@@ -29,6 +31,7 @@ dev = [
     "pyright>=1.1.390",
     "pytest>=8.3.0",
     "pytest-asyncio>=1.5.0",
+    "pytest-benchmark>=5.3.1",
     "pytest-cov>=6.0.0",
     "ruff>=0.8.0",
 ]
